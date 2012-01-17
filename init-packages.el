@@ -1,0 +1,25 @@
+;; require-package and set up lovingly copied from github.com/purcell/emacs.d
+(defun require-package (package)
+  "Ask elpa to install given PACKAGE."
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(require-package 'clojure-mode)
+(require-package 'clojurescript-mode)
+(require-package 'closure-lint-mode)
+(require-package 'haml-mode)
+(require-package 'js2-mode)
+(require-package 'markdown-mode)
+(require-package 'paredit)
+(require-package 'scala-mode)
+(require-package 'slime)
+(require-package 'yaml-mode)
+
+(provide 'init-packages)
