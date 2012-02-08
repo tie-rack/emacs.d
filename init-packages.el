@@ -15,7 +15,6 @@
 (require-package 'clojurescript-mode)
 (require-package 'closure-lint-mode)
 (require-package 'haml-mode)
-(require-package 'js2-mode)
 (require-package 'markdown-mode)
 (require-package 'paredit)
 (require-package 'scala-mode)
