@@ -10,6 +10,7 @@
 (require 'init-nyan)
 
 (require 'init-clojure)
+(require 'init-html)
 (require 'init-javascript)
 (require 'init-yaml)
 
