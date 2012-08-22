@@ -16,7 +16,7 @@
 (set-foreground-color "white")
 
 (cond ((string-match "apple" (emacs-version))
-       (set-default-font "-apple-inconsolata-medium-r-normal--15-150-72-72-m-150-iso10646-1")
+       (set-default-font "-apple-inconsolata-medium-r-normal--18-180-72-72-m-180-iso10646-1")
        (setq initial-frame-alist '((top . 1) (width . 120) (height . 45)))))
 
 (require 'uniquify)
