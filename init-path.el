@@ -1,5 +1,5 @@
-(setq path "/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin")
+(setq path "/Users/cms/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin")
 (setenv "PATH" path)
-(setq exec-path (append '("/usr/local/bin" "/usr/local/sbin") exec-path))
+(setq exec-path (append '("/Users/cms/bin" "/usr/local/bin" "/usr/local/sbin") exec-path))
 
 (provide 'init-path)

@@ -14,6 +14,7 @@
 (require-package 'clojure-mode)
 (require-package 'clojurescript-mode)
 (require-package 'closure-lint-mode)
+(require-package 'nrepl)
 (require-package 'haml-mode)
 (require-package 'markdown-mode)
 (require-package 'paredit)
