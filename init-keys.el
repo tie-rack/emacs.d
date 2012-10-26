@@ -10,4 +10,7 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 
+(windmove-default-keybindings)
+(setq windmove-wrap-around t)
+
 (provide 'init-keys)
