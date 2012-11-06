@@ -8,6 +8,7 @@
 (require 'init-shell)
 (require 'init-packages)
 (require 'init-nyan)
+(require 'init-term)
 
 (require 'init-clojure)
 (require 'init-html)
