@@ -10,7 +10,7 @@
 
 ;; I find myself needing to adjust the frame height on occasion
 (defun adjust-frame-height (adjustment)
-  (interactive)
+  (interactive "NFrame height adjustment: ")
   (set-frame-height (selected-frame) (+ (frame-height) adjustment)))
 (defun shrink-frame nil
   (interactive)
