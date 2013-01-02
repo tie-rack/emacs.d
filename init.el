@@ -13,6 +13,7 @@
 (require 'init-clojure)
 (require 'init-html)
 (require 'init-javascript)
+(require 'init-scala)
 (require 'init-yaml)
 
 ;; local settings

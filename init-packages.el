@@ -6,6 +6,7 @@
 
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (package-initialize)
 (unless package-archive-contents
@@ -18,7 +19,7 @@
 (require-package 'haml-mode)
 (require-package 'markdown-mode)
 (require-package 'paredit)
-(require-package 'scala-mode)
+(require-package 'scala-mode2)
 (require-package 'slime)
 (require-package 'yaml-mode)
 
