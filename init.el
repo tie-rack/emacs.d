@@ -16,6 +16,8 @@
 (require 'init-scala)
 (require 'init-yaml)
 
+(server-start)
+
 ;; local settings
 (if (file-exists-p "~/.emacslocal")
     (load "~/.emacslocal"))
