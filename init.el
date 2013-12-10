@@ -1,4 +1,5 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor"))
 
 (require 'init-path)
 (require 'init-autosave)
@@ -6,15 +7,15 @@
 (require 'init-whitespace)
 (require 'init-keys)
 (require 'init-shell)
-(require 'init-packages)
-(require 'init-nyan)
+;;(require 'init-packages)
+;;(require 'init-nyan)
 (require 'init-term)
 
 (require 'init-clojure)
 (require 'init-html)
 (require 'init-javascript)
 (require 'init-scala)
-(require 'init-yaml)
+;;(require 'init-yaml)
 
 (server-start)
 
