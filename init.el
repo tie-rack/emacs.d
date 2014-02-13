@@ -7,7 +7,8 @@
 (require 'init-keys)
 (require 'init-shell)
 (require 'init-packages)
-(require 'init-nyan)
+(when (display-graphic-p)
+  (require 'init-nyan))
 (require 'init-term)
 
 (require 'init-clojure)
