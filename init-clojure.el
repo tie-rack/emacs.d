@@ -22,4 +22,6 @@ Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile (concat "lein kibit " buffer-file-name)))
 
+(add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
+
 (provide 'init-clojure)
