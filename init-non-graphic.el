@@ -34,4 +34,10 @@
 
 (color-theme-shea)
 
+;;; Terminal.app doesn't get some paredit keys correctly
+(global-set-key "\C-c)" 'paredit-forward-slurp-sexp)
+(global-set-key "\C-c}" 'paredit-forward-barf-sexp)
+(global-set-key "\C-c(" 'paredit-backward-slurp-sexp)
+(global-set-key "\C-c{" 'paredit-backward-barf-sexp)
+
 (provide 'init-non-graphic)
