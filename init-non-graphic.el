@@ -28,7 +28,7 @@
      (minibuffer-prompt ((t (:foreground "#00FFFF"))))
      (mode-line ((t (:background "#EEEEEE" :foreground "black"))))
      (mode-line-buffer-id ((t (:background "#FFFFFF" :foreground "black" :bold t))))
-     (mode-line-inactive ((t (:background "#BBBBBB" :foreground "black"))))
+     (mode-line-inactive ((t (:background "#999999" :foreground "black"))))
      (region ((t (:background "#0000FF"))))
      (vertical-border ((t (:foreground "white" :background "#333333")))))))
 
