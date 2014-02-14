@@ -1,9 +1,5 @@
 (setq inhibit-startup-message t)
 
-(when (display-graphic-p)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1))
-
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 
@@ -13,9 +9,6 @@
 
 (setq column-number-mode t)
 (transient-mark-mode t)
-
-(set-background-color "black")
-(set-foreground-color "white")
 
 (cond ((string-match "apple" (emacs-version))
        (set-default-font "-apple-inconsolata-medium-r-normal--16-160-72-72-m-160-iso10646-1")

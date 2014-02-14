@@ -7,9 +7,11 @@
 (require 'init-keys)
 (require 'init-shell)
 (require 'init-packages)
-(when (display-graphic-p)
-  (require 'init-nyan))
 (require 'init-term)
+
+(if (display-graphic-p)
+  (require 'init-graphic)
+  (require 'init-non-graphic))
 
 (require 'init-clojure)
 (require 'init-html)
