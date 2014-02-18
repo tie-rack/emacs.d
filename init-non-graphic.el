@@ -30,6 +30,7 @@
      (mode-line-buffer-id ((t (:background "#FFFFFF" :foreground "black" :bold t))))
      (mode-line-inactive ((t (:background "#999999" :foreground "black"))))
      (region ((t (:background "#0000FF"))))
+     (secondary-selection ((t (:background "#444400"))))
      (vertical-border ((t (:foreground "white" :background "#333333")))))))
 
 (color-theme-shea)
