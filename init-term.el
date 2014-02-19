@@ -11,4 +11,10 @@
                                                 "char) [C-x C-j to switch]"
                                                 "line) [C-c C-k to switch]"))))))
 
+(defun zsh (buffer-name)
+  "Start a zsh ansi-shell and name it."
+  (interactive "sname: ")
+  (term "/bin/zsh")
+  (rename-buffer buffer-name t))
+
 (provide 'init-term)
