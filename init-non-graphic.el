@@ -39,6 +39,16 @@
      (mode-line-buffer-id ((t (:background "#FFFFFF" :foreground "black" :bold t))))
      (mode-line-inactive ((t (:background "#999999" :foreground "black"))))
 
+     (rainbow-delimiters-depth-1-face ((t (:foreground "#FFFFFF"))))
+     (rainbow-delimiters-depth-2-face ((t (:foreground "#FFBBB8"))))
+     (rainbow-delimiters-depth-3-face ((t (:foreground "#96A85E"))))
+     (rainbow-delimiters-depth-4-face ((t (:foreground "#D1C236"))))
+     (rainbow-delimiters-depth-5-face ((t (:foreground "#8B77D1"))))
+     (rainbow-delimiters-depth-6-face ((t (:foreground "#77D1BB"))))
+     (rainbow-delimiters-depth-7-face ((t (:foreground "#F1F181"))))
+     (rainbow-delimiters-depth-8-face ((t (:foreground "#999999"))))
+     (rainbow-delimiters-depth-9-face ((t (:foreground "#33D9D9"))))
+
      (vertical-border ((t (:foreground "white" :background "#333333")))))))
 
 (color-theme-shea)

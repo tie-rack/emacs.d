@@ -20,6 +20,7 @@
 (require-package 'haml-mode)
 (require-package 'markdown-mode)
 (require-package 'paredit)
+(require-package 'rainbow-delimiters)
 (require-package 'scala-mode2)
 (require-package 'slime)
 (require-package 'yaml-mode)

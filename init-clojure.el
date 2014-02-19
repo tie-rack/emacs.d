@@ -1,6 +1,10 @@
 (require 'paredit)
+
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+(require 'rainbow-delimiters)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
