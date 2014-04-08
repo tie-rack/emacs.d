@@ -15,6 +15,7 @@
 
 (require 'init-clojure)
 (require 'init-dockerfile)
+(require 'init-elisp)
 (require 'init-html)
 (require 'init-javascript)
 (require 'init-scala)
