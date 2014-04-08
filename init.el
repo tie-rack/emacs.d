@@ -14,6 +14,7 @@
   (require 'init-non-graphic))
 
 (require 'init-clojure)
+(require 'init-dockerfile)
 (require 'init-html)
 (require 'init-javascript)
 (require 'init-scala)

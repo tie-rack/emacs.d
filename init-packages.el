@@ -26,5 +26,6 @@
 (require-package 'yaml-mode)
 (require-package 'magit)
 (require-package 'ibuffer-vc)
+(require-package 'dockerfile-mode)
 
 (provide 'init-packages)
