@@ -25,5 +25,6 @@
 (require-package 'slime)
 (require-package 'yaml-mode)
 (require-package 'magit)
+(require-package 'ibuffer-vc)
 
 (provide 'init-packages)
