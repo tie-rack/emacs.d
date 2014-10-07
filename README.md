@@ -6,12 +6,13 @@ is mine.
 ## Set up
 
 1. Clone into ~/.emacs.d
-2. `cd ~/.emacs.d`
-3. `git submodule init --update`
-4. Enjoy
+2. Enjoy
 
 ## History
 
 When I upgraded to Emacs 24, I decided I'd start using ELPA and so it
 was a good time to start my .emacs.d all over.  So I ditched my old
-one and made this.  I think I'm happier.
+one and made this.
+
+Then I read and really enjoued some org-mode literate configs, so I
+made another big change.
