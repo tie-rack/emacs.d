@@ -14,5 +14,5 @@ When I upgraded to Emacs 24, I decided I'd start using ELPA and so it
 was a good time to start my .emacs.d all over.  So I ditched my old
 one and made this.
 
-Then I read and really enjoued some org-mode literate configs, so I
+Then I read and really enjoyed some org-mode literate configs, so I
 made another big change.
