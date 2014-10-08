@@ -288,6 +288,13 @@ I guess I wrote my own color theme?
 #+end_src
 
 ** Programming
+*** Magit
+
+90% of my interaction with git comes from magit.
+
+#+begin_src emacs-lisp
+(require-package 'magit)
+#+end_src
 
 *** For Lisps
 
