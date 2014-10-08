@@ -6,3 +6,4 @@
 /server
 repl-port
 tierack.el
+.chicken-scheme-symbols-dump.el
