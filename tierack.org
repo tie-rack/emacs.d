@@ -356,11 +356,10 @@ Support cljx (which you have to sometimes).
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 #+end_src
 
-*** Chicken
+*** Racket
 
 #+begin_src emacs-lisp
-(require-package 'chicken-scheme)
-(require 'chicken-scheme)
+(require-package 'geiser)
 
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
