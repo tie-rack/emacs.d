@@ -371,6 +371,12 @@ Support cljx (which you have to sometimes).
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 #+end_src
 
+*** Docker
+
+#+begin_src emacs-lisp
+(require-package 'dockerfile-mode)
+#+end_src
+
 ** $PATH
 
 Here's something I should re-evaluate at some point. I was having
