@@ -377,6 +377,12 @@ Support cljx (which you have to sometimes).
 (require-package 'dockerfile-mode)
 #+end_src
 
+*** YAML
+
+#+begin_src emacs-lisp
+(require-package 'yaml-mode)
+#+end_src
+
 ** $PATH
 
 Here's something I should re-evaluate at some point. I was having
