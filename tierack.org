@@ -394,8 +394,8 @@ trouble with the path from emacs. This is where I ended up.
 If there are machine-specific configurations, load those:
 
 #+begin_src emacs-lisp
-(if (file-exists-p "~/.emacslocal")
-  (load "~/.emacslocal"))
+(if (file-exists-p "~/.emacslocal.el")
+  (load "~/.emacslocal.el"))
 #+end_src
 
 And start a server
