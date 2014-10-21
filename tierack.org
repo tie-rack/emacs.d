@@ -14,13 +14,6 @@ Very directly inspired by [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sach
 #+end_src
 
 ** Emacs
-
-*** Load path
-
-#+begin_src emacs-lisp
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-#+end_src
-
 *** Autosaves
 
 I shove autosaves in =/tmp= because I don't care about them enough.
