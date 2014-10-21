@@ -51,6 +51,8 @@ No startup message, no blinking, no menu bar... Simpler, cleaner.
 (setq inhibit-startup-message t)
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 (setq visible-bell t)
 (setq ring-bell-function
   (lambda () (message "*beep*")))
