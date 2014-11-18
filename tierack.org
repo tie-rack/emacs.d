@@ -312,7 +312,7 @@ I guess I wrote my own color themes?
      (font-lock-function-name-face ((t (:foreground "#4028FF"))))
      (font-lock-keyword-face ((t (:foreground "#4400AA"))))
      (font-lock-preprocessor-face ((t (:foreground "#000052"))))
-     (font-lock-string-face ((t (:foreground "#00CC00"))))
+     (font-lock-string-face ((t (:foreground "#009900"))))
      (font-lock-type-face ((t (:foreground "#000000"))))
      (font-lock-variable-name-face ((t (:foreground "#007700"))))
      (isearch ((t (:background "#FFDDDD"))))
@@ -323,18 +323,20 @@ I guess I wrote my own color themes?
      (mode-line ((t (:background "#EEEEEE" :foreground "black"))))
      (mode-line-buffer-id ((t (:background "#FFFFFF" :foreground "black" :bold t))))
      (mode-line-inactive ((t (:background "#999999" :foreground "black"))))
-     (rainbow-delimiters-depth-1-face ((t (:foreground "#000000"))))
-     (rainbow-delimiters-depth-2-face ((t (:foreground "#00333F"))))
-     (rainbow-delimiters-depth-3-face ((t (:foreground "#69489E"))))
-     (rainbow-delimiters-depth-4-face ((t (:foreground "#4132B6"))))
-     (rainbow-delimiters-depth-5-face ((t (:foreground "#7B8731"))))
-     (rainbow-delimiters-depth-6-face ((t (:foreground "#87314B"))))
-     (rainbow-delimiters-depth-7-face ((t (:foreground "#010171"))))
-     (rainbow-delimiters-depth-8-face ((t (:foreground "#555555"))))
-     (rainbow-delimiters-depth-9-face ((t (:foreground "#D33939"))))
+     (rainbow-delimiters-depth-1-face ((t (:foreground "#000083"))))
+     (rainbow-delimiters-depth-2-face ((t (:foreground "#6677CC"))))
+     (rainbow-delimiters-depth-3-face ((t (:foreground "#777766"))))
+     (rainbow-delimiters-depth-4-face ((t (:foreground "#709870"))))
+     (rainbow-delimiters-depth-5-face ((t (:foreground "#907373"))))
+     (rainbow-delimiters-depth-6-face ((t (:foreground "#6276BA"))))
+     (rainbow-delimiters-depth-7-face ((t (:foreground "#858580"))))
+     (rainbow-delimiters-depth-8-face ((t (:foreground "#80A880"))))
+     (rainbow-delimiters-depth-9-face ((t (:foreground "#887070"))))
+     (shadow ((t (:foreground "#666666"))))
      (vertical-border ((t (:foreground "#000000" :background "#000000")))))))
 
 (color-theme-tierack-light)
+
 #+end_src
 
 *** OS X
