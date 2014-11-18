@@ -447,6 +447,12 @@ Support cljx (which you have to sometimes).
 (require-package 'dockerfile-mode)
 #+end_src
 
+*** Markdown
+
+#+begin_src emacs-lisp
+(require-package 'markdown-mode)
+#+end_src
+
 *** YAML
 
 #+begin_src emacs-lisp
