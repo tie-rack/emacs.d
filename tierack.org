@@ -359,6 +359,20 @@ little bit of help.
   (setq interprogram-paste-function 'copy-from-osx))
 #+end_src
 
+*** Nyan
+
+I like having this around.
+
+#+begin_src emacs-lisp
+(require-package 'nyan-mode)
+(when (display-graphic-p)
+  (require 'nyan-mode)
+
+  (setq nyan-wavy-trail nil)
+  (setq nyan-bar-length 20)
+  (nyan-mode))
+#+end_src
+
 ** Programming
 *** Magit
 
