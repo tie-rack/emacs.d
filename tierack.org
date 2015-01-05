@@ -83,16 +83,10 @@ like other editors' cmd-T fuzzy filename searching.
 
 **** Ibuffer
 
-=Ibuffer= is a better buffer list, which I've configured here to split
-buffers into groups based on version control repos.
+=Ibuffer= is a better buffer list.
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(add-hook 'ibuffer-hook
-  (lambda ()
-    (ibuffer-vc-set-filter-groups-by-vc-root)
-    (unless (eq ibuffer-sorting-mode 'alphabetic)
-      (ibuffer-do-sort-by-alphabetic))))
 #+end_src
 
 **** Quitting
@@ -223,6 +217,23 @@ Initialize and refresh (if necessary).
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
+#+end_src
+
+*** Ibuffer-vc
+
+#+begin_src emacs-lisp
+(require-package 'ibuffer-vc)
+#+end_src
+
+Configure =Ibuffer= to split buffers into groups based on version
+control repos.
+
+#+begin_src emacs-lisp
+(add-hook 'ibuffer-hook
+  (lambda ()
+    (ibuffer-vc-set-filter-groups-by-vc-root)
+    (unless (eq ibuffer-sorting-mode 'alphabetic)
+      (ibuffer-do-sort-by-alphabetic))))
 #+end_src
 
 *** Color theme
