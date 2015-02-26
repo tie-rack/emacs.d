@@ -497,6 +497,12 @@ trouble with the path from emacs. This is where I ended up.
 (setq exec-path (append '("/Users/cms/bin" "/usr/local/bin" "/usr/local/sbin") exec-path))
 #+end_src
 
+** erc
+
+#+begin_src emacs-lisp
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+#+end_src
+
 ** Last but not least
 
 If there are machine-specific configurations, load those:
