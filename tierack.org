@@ -480,6 +480,13 @@ Support cljx (which you have to sometimes).
 (require-package 'markdown-mode)
 #+end_src
 
+A custom CSS for Markdown HTML output
+
+#+begin_src emacs-lisp
+(setq markdown-css-path (expand-file-name "~/.emacs.d/markdown.css"))
+#+end_src
+
+
 *** YAML
 
 #+begin_src emacs-lisp

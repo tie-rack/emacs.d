@@ -1,0 +1,22 @@
+body {
+    font-family: "Avenir Next";
+    color: #000;
+    background-color: #fdfdfd;
+    padding: 0px 20px;
+    font-size: 18px;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+code {
+    background-color: #eee;
+    padding: 4px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+code:hover {
+    background-color: #ddd;
+}
