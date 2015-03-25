@@ -4,6 +4,13 @@ body {
     background-color: #fdfdfd;
     padding: 0px 20px;
     font-size: 18px;
+    width: 40rem;
+    margin: auto;
+    line-height: 1.8rem;
+}
+
+h1 {
+    line-height: 2.8rem;
 }
 
 ul, ol {
@@ -19,4 +26,10 @@ code {
 
 code:hover {
     background-color: #ddd;
+}
+
+blockquote {
+    border-left: 2px solid #aaa;
+    margin-left: 0;
+    padding-left: 2rem;
 }
