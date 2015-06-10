@@ -108,12 +108,12 @@ No tabs, please.
 (setq-default indent-tabs-mode nil)
 #+end_src
 
-Two spaces for everything. I added the =c-basic-offset= setting at
-some point, but I can't remember why now. =tab-width= wasn't enough?
+Two spaces for everything.
 
 #+begin_src emacs-lisp
 (setq-default tab-width 2)
 (setq-default c-basic-offset 2)
+(setq-default js-indent-level 2)
 #+end_src
 
 Make sure there's a final newline when saving, but also no other extraneous whitespace.
