@@ -147,6 +147,16 @@ I'd rather this than seeing "C-x C-g is undefined" all the time.
 (global-set-key "\C-x\C-g" 'keyboard-quit)
 #+end_src
 
+A function to add a bunch of bindings to a keymap.
+
+#+begin_src emacs-lisp
+(defun add-keybindings (keymap bindings)
+  (dolist (keymapping bindings)
+    (let ((key (car keymapping))
+          (def (cdr keymapping)))
+      (define-key keymap key def))))
+#+end_src
+
 *** Shell
 
 ANSI color!
@@ -402,13 +412,16 @@ I like having this around.
 (require 'paredit)
 #+end_src
 
-Some of paredit's default keybindings are not available on the terminal.
+Personalize some Paredit keybindings.
 
 #+begin_src emacs-lisp
-(global-set-key "\C-c)" 'paredit-forward-slurp-sexp)
-(global-set-key "\C-c}" 'paredit-forward-barf-sexp)
-(global-set-key "\C-c(" 'paredit-backward-slurp-sexp)
-(global-set-key "\C-c{" 'paredit-backward-barf-sexp)
+(eval-after-load 'paredit
+  '(add-keybindings paredit-mode-map
+                    '(("\C-c)" . paredit-forward-slurp-sexp)
+                      ("\C-c}" . paredit-forward-barf-sexp)
+                      ("\C-c(" . paredit-backward-slurp-sexp)
+                      ("\C-c{" . paredit-backward-barf-sexp)
+                      ("\C-cw" . paredit-copy-as-kill))))
 #+end_src
 
 **** Rainbow delimiters
