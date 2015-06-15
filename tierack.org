@@ -437,6 +437,7 @@ Personalize some Paredit keybindings.
 (require-package 'clojure-mode)
 (require-package 'clojurescript-mode)
 (require-package 'cider)
+(require-package 'typed-clojure-mode)
 #+end_src
 
 Paredit and rainbows.
@@ -444,6 +445,7 @@ Paredit and rainbows.
 #+begin_src emacs-lisp
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook 'typed-clojure-mode)
 #+end_src
 
 For Cider, too.
