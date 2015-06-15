@@ -483,6 +483,12 @@ Support cljx (which you have to sometimes).
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 #+end_src
 
+*** Javascript
+
+#+begin_src emacs-lisp
+(require-package 'nodejs-repl)
+#+end_src
+
 *** Docker
 
 #+begin_src emacs-lisp
