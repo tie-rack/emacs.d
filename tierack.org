@@ -461,6 +461,22 @@ Support cljx (which you have to sometimes).
 (add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
 #+end_src
 
+**** CIDER
+
+Start a REPL with the test profile.
+
+#+begin_src emacs-lisp
+(defun cider-jack-in-test-profile ()
+  (interactive)
+  (let ((cider-lein-parameters (concat "with-profile +test "
+                                       cider-lein-parameters)))
+    (cider-jack-in)))
+
+(eval-after-load 'clojure-mode
+  '(add-keybindings clojure-mode-map
+                    '(("\C-cj" . cider-jack-in-test-profile))))
+#+end_src
+
 *** Elisp
 
 #+begin_src emacs-lisp
