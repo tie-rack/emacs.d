@@ -157,14 +157,6 @@ A function to add a bunch of bindings to a keymap.
       (define-key keymap key def))))
 #+end_src
 
-*** Shell
-
-ANSI color!
-
-#+begin_src emacs-lisp
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-#+end_src
-
 *** Term
 
 Use zsh.
@@ -227,6 +219,30 @@ Initialize and refresh (if necessary).
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
+#+end_src
+
+**** Quelpa
+
+#+begin_src emacs-lisp
+(unless (require 'quelpa nil t)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+#+end_src
+
+*** Shell
+
+ANSI color!
+
+#+begin_src emacs-lisp
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+#+end_src
+
+**** emacs-pager
+
+#+begin_src emacs-lisp
+(quelpa '(emacs-pager :repo "mbriggs/emacs-pager" :fetcher github))
+(add-to-list 'auto-mode-alist '("\\.emacs-pager$" . emacs-pager-mode))
 #+end_src
 
 *** Ibuffer-vc

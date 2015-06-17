@@ -2,6 +2,7 @@
 /auto-save-list
 /url
 /elpa
+/quelpa
 /swank
 /server
 repl-port
