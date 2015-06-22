@@ -242,10 +242,27 @@ ANSI color!
 
 #+begin_src emacs-lisp
 (put 'erase-buffer 'disabled nil)
+#+end_src
 
+Rename shell buffers based on the basename of the current directory.
+
+#+begin_src emacs-lisp
+(defun rename-shell-buffer-to-current-dir ()
+  (interactive)
+  (let* ((dir-name (car (last (split-string default-directory "/" t))))
+         (buffer-name (concat "*shell: " dir-name "*")))
+    (rename-buffer buffer-name t)))
+
+(add-hook 'shell-mode-hook 'rename-shell-buffer-to-current-dir)
+#+end_src
+
+Keybindings.
+
+#+begin_src emacs-lisp
 (eval-after-load 'shell
   '(add-keybindings shell-mode-map
-                    '(("\C-cl" . erase-buffer))))
+                    '(("\C-cl" . erase-buffer)
+                      ("\C-crb" . rename-shell-buffer-to-current-dir))))
 #+end_src
 
 **** emacs-pager
