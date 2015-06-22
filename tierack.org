@@ -238,6 +238,16 @@ ANSI color!
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 #+end_src
 
+`erase-buffer` can be very handy in a shell.
+
+#+begin_src emacs-lisp
+(put 'erase-buffer 'disabled nil)
+
+(eval-after-load 'shell
+  '(add-keybindings shell-mode-map
+                    '(("\C-cl" . erase-buffer))))
+#+end_src
+
 **** emacs-pager
 
 #+begin_src emacs-lisp
