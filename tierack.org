@@ -446,6 +446,12 @@ I like having this around.
 (require-package 'magit)
 #+end_src
 
+I've read these instructions.
+
+#+begin_src emacs-lisp
+(setq magit-last-seen-setup-instructions "1.4.0")
+#+end_src
+
 *** For Lisps
 
 **** Paredit
