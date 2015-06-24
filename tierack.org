@@ -569,7 +569,7 @@ Start a REPL with the test profile.
 A custom CSS for Markdown HTML output
 
 #+begin_src emacs-lisp
-(setq markdown-css-path (expand-file-name "~/.emacs.d/markdown.css"))
+(add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css"))
 #+end_src
 
 
