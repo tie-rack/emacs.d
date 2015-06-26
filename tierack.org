@@ -125,7 +125,7 @@ Make sure there's a final newline when saving, but also no other extraneous whit
 
 *** Keybindings
 
-My right pinky's not always off the shift key by the time the left
+My left pinky's not always off the shift key by the time the right
 pinky goes for backspace.
 
 #+begin_src emacs-lisp
