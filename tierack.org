@@ -443,6 +443,15 @@ I like having this around.
   (nyan-mode))
 #+end_src
 
+*** Org-mode
+
+Highlight code blocks and preserve their indentation.
+
+#+begin_src emacs-lisp
+(setq org-src-fontify-natively t)
+(setq org-src-preserve-indentation t)
+#+end_src
+
 ** Programming
 *** Magit
 
