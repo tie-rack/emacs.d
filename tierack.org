@@ -578,7 +578,6 @@ A custom CSS for Markdown HTML output
 (add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css"))
 #+end_src
 
-
 *** YAML
 
 #+begin_src emacs-lisp
