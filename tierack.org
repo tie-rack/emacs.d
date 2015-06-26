@@ -147,6 +147,12 @@ I'd rather this than seeing "C-x C-g is undefined" all the time.
 (global-set-key "\C-x\C-g" 'keyboard-quit)
 #+end_src
 
+=rgrep= has proven to be an effective tool.
+
+#+begin_src emacs-lisp
+(global-set-key "\C-crg" 'rgrep)
+#+end_src
+
 A function to add a bunch of bindings to a keymap.
 
 #+begin_src emacs-lisp
