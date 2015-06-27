@@ -455,6 +455,7 @@ Highlight code blocks and preserve their indentation.
 ** Programming
 *** Magit
 
+
 90% of my interaction with git comes from magit.
 
 #+begin_src emacs-lisp
@@ -465,6 +466,12 @@ I've read these instructions.
 
 #+begin_src emacs-lisp
 (setq magit-last-seen-setup-instructions "1.4.0")
+#+end_src
+
+Keys to get into it.
+
+#+begin_src emacs-lisp
+(global-set-key "\C-cms" 'magit-status)
 #+end_src
 
 *** For Lisps
