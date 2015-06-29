@@ -595,6 +595,12 @@ A custom CSS for Markdown HTML output
   '(add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css")))
 #+end_src
 
+Add auto-fill-mode.
+
+#+begin_src emacs-lisp
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
+#+end_src
+
 *** YAML
 
 #+begin_src emacs-lisp
