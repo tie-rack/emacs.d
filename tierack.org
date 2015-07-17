@@ -45,13 +45,15 @@ opportunity for me to figure out what I really want.
 
 *** Interface
 
-No startup message, no blinking, no menu bar... Simpler, cleaner.
+No startup message, no blinking, no menu bar, no tooltips... Simpler,
+cleaner.
 
 #+begin_src emacs-lisp
 (setq inhibit-startup-message t)
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(tooltip-mode -1)
 (scroll-bar-mode -1)
 (setq visible-bell t)
 (setq ring-bell-function
