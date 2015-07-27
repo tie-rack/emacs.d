@@ -476,6 +476,14 @@ Keys to get into it.
 (global-set-key "\C-cms" 'magit-status)
 #+end_src
 
+The new (2.1.0) behavior of creating branches is weird to me. It sets
+the upstream as whatever the basis of the branch is, so it's often the
+local master branch. I don't like that.
+
+#+begin_src emacs-lisp
+(setq magit-branch-arguments (remove "--track" magit-branch-arguments))
+#+end_src
+
 *** For Lisps
 
 **** Paredit
