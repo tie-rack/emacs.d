@@ -462,6 +462,7 @@ Highlight code blocks and preserve their indentation.
 
 #+begin_src emacs-lisp
 (require-package 'magit)
+(require 'magit)
 #+end_src
 
 I've read these instructions.
