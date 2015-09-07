@@ -603,7 +603,10 @@ A custom CSS for Markdown HTML output
 
 #+begin_src emacs-lisp
 (eval-after-load 'markdown-mode
-  '(add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css")))
+  '(progn
+     (add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css"))
+     (setq markdown-content-type "text/html")
+     (setq markdown-coding-system 'utf-8)))
 #+end_src
 
 Add auto-fill-mode.
