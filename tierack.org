@@ -566,15 +566,6 @@ Start a REPL with the test profile.
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 #+end_src
 
-*** Racket
-
-#+begin_src emacs-lisp
-(require-package 'geiser)
-
-(add-hook 'scheme-mode-hook 'enable-paredit-mode)
-(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
-#+end_src
-
 *** Ruby
 
 #+begin_src emacs-lisp
