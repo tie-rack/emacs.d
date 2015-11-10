@@ -614,7 +614,7 @@ Set it up.
 (add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
 
 (add-keybindings scheme-mode-map
-                    '(("\C-cj" . run-scheme)))
+                 '(("\C-cj" . run-scheme)))
 #+end_src
 
 `C-cj` because it's like the keybinding already in place for Clojure.
