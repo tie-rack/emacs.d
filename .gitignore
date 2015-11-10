@@ -10,3 +10,4 @@ repl-port
 tierack.el
 .chicken-scheme-symbols-dump.el
 /tramp
+unpackaged-lisp/

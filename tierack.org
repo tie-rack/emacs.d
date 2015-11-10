@@ -238,6 +238,28 @@ Initialize and refresh (if necessary).
     (eval-buffer)))
 #+end_src
 
+*** Unpackaged Lisp
+
+There is some code floating around outside of pacakges. Perhaps I want
+some of it sometimes.
+
+Make a directory for it to live in and add that to the load path.
+
+#+begin_src emacs-lisp
+(setq unpackaged-lisp-dir (expand-file-name "~/.emacs.d/unpackaged-lisp/"))
+(make-directory unpackaged-lisp-dir t)
+(add-to-list 'load-path unpackaged-lisp-dir)
+#+end_src
+
+And a helper function for downloading a file into it.
+
+#+begin_src emacs-lisp
+(defun download-unpackaged-lisp-file (url filename)
+  (url-copy-file url
+               (concat unpackaged-lisp-dir filename)
+               t))
+#+end_src
+
 *** Shell
 
 ANSI color!
