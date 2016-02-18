@@ -300,7 +300,7 @@ Keybindings.
   '(tierack/add-keybindings
     shell-mode-map
     '(("\C-cl" . erase-buffer)
-      ("\C-crb" . rename-shell-buffer-to-current-dir))))
+      ("\C-crb" . tierack/rename-shell-buffer-to-current-dir))))
 #+end_src
 
 **** emacs-pager
