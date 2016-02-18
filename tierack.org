@@ -137,10 +137,10 @@ pinky goes for backspace.
 I like going to the =*scratch*= buffer a lot.
 
 #+begin_src emacs-lisp
-(defun switch-to-scratch nil
+(defun tierack/switch-to-scratch nil
   (interactive)
   (switch-to-buffer "*scratch*"))
-(global-set-key "\C-cb" 'switch-to-scratch)
+(global-set-key "\C-cb" 'tierack/switch-to-scratch)
 #+end_src
 
 I'd rather this than seeing "C-x C-g is undefined" all the time.
@@ -158,7 +158,7 @@ I'd rather this than seeing "C-x C-g is undefined" all the time.
 A function to add a bunch of bindings to a keymap.
 
 #+begin_src emacs-lisp
-(defun add-keybindings (keymap bindings)
+(defun tierack/add-keybindings (keymap bindings)
   (dolist (keymapping bindings)
     (let ((key (car keymapping))
           (def (cdr keymapping)))
@@ -192,7 +192,7 @@ term. This tells me in the mode line how to go to the other one.
 Start a new, named zsh term:
 
 #+begin_src emacs-lisp
-(defun zsh (buffer-name)
+(defun tierack/zsh (buffer-name)
   "Start a zsh ansi-shell and name it."
   (interactive "sname: ")
   (term "/bin/zsh")
@@ -208,7 +208,7 @@ Start a new, named zsh term:
 =require-package=  lovingly copied from [[github.com/purcell/emacs.d][purcell/emacs.d]].
 
 #+begin_src emacs-lisp
-(defun require-package (package)
+(defun tierack/require-package (package)
   "Install given PACKAGE if it's not."
   (unless (package-installed-p package)
     (package-install package)))
@@ -261,7 +261,7 @@ Make a directory for it to live in and add that to the load path.
 And a helper function for downloading a file into it.
 
 #+begin_src emacs-lisp
-(defun download-unpackaged-lisp-file (url filename)
+(defun tierack/download-unpackaged-lisp-file (url filename)
   (url-copy-file url
                (concat unpackaged-lisp-dir filename)
                t))
@@ -284,22 +284,23 @@ ANSI color!
 Rename shell buffers based on the basename of the current directory.
 
 #+begin_src emacs-lisp
-(defun rename-shell-buffer-to-current-dir ()
+(defun tierack/rename-shell-buffer-to-current-dir ()
   (interactive)
   (let* ((dir-name (car (last (split-string default-directory "/" t))))
          (buffer-name (concat "*shell: " dir-name "*")))
     (rename-buffer buffer-name t)))
 
-(add-hook 'shell-mode-hook 'rename-shell-buffer-to-current-dir)
+(add-hook 'shell-mode-hook 'tierack/rename-shell-buffer-to-current-dir)
 #+end_src
 
 Keybindings.
 
 #+begin_src emacs-lisp
 (eval-after-load 'shell
-  '(add-keybindings shell-mode-map
-                    '(("\C-cl" . erase-buffer)
-                      ("\C-crb" . rename-shell-buffer-to-current-dir))))
+  '(tierack/add-keybindings
+    shell-mode-map
+    '(("\C-cl" . erase-buffer)
+      ("\C-crb" . rename-shell-buffer-to-current-dir))))
 #+end_src
 
 **** emacs-pager
@@ -312,7 +313,7 @@ Keybindings.
 *** Ibuffer-vc
 
 #+begin_src emacs-lisp
-(require-package 'ibuffer-vc)
+(tierack/require-package 'ibuffer-vc)
 #+end_src
 
 Configure =Ibuffer= to split buffers into groups based on version
@@ -329,7 +330,7 @@ control repos.
 *** Color theme
 
 #+begin_src emacs-lisp
-(require-package 'color-theme)
+(tierack/require-package 'color-theme)
 (require 'color-theme)
 #+end_src
 
@@ -338,9 +339,9 @@ I guess I wrote my own color themes?
 **** Dark theme
 
 #+begin_src emacs-lisp
-(defun color-theme-tierack ()
+(defun tierack/color-theme ()
   (color-theme-install
-   '(color-theme-tierack
+   '(tierack/color-theme
      ((background-color . "#000000")
       (background-mode . dark)
       (cursor-color . "#FFFFFF")
@@ -382,15 +383,15 @@ I guess I wrote my own color themes?
      (rainbow-delimiters-depth-9-face ((t (:foreground "#33D9D9"))))
      (vertical-border ((t (:foreground "white" :background "#333333")))))))
 
-;; (color-theme-tierack)
+;; (tierack/color-theme)
 #+end_src
 
 **** Light theme
 
 #+begin_src emacs-lisp
-(defun color-theme-tierack-light ()
+(defun tierack/color-theme-light ()
   (color-theme-install
-   '(color-theme-tierack
+   '(tierack/color-theme
      ((background-color . "#FCFCFC")
       (background-mode . light)
       (cursor-color . "#000000")
@@ -436,7 +437,7 @@ I guess I wrote my own color themes?
      (shadow ((t (:foreground "#666666"))))
      (vertical-border ((t (:foreground "#000000" :background "#000000")))))))
 
-(color-theme-tierack-light)
+(tierack/color-theme-light)
 
 #+end_src
 
@@ -447,17 +448,17 @@ little bit of help.
 
 #+begin_src emacs-lisp
 (when (string-equal "darwin" system-type)
-  (defun copy-from-osx ()
+  (defun tierack/copy-from-osx ()
     (shell-command-to-string "pbpaste"))
 
-  (defun paste-to-osx (text &optional push)
+  (defun tierack/paste-to-osx (text &optional push)
     (let ((process-connection-type nil))
       (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
         (process-send-string proc text)
         (process-send-eof proc))))
 
-  (setq interprogram-cut-function 'paste-to-osx)
-  (setq interprogram-paste-function 'copy-from-osx))
+  (setq interprogram-cut-function 'tierack/paste-to-osx)
+  (setq interprogram-paste-function 'tierack/copy-from-osx))
 #+end_src
 
 *** Nyan
@@ -465,7 +466,7 @@ little bit of help.
 I like having this around.
 
 #+begin_src emacs-lisp
-(require-package 'nyan-mode)
+(tierack/require-package 'nyan-mode)
 (when (display-graphic-p)
   (require 'nyan-mode)
 
@@ -490,7 +491,7 @@ Highlight code blocks and preserve their indentation.
 90% of my interaction with git comes from magit.
 
 #+begin_src emacs-lisp
-(require-package 'magit)
+(tierack/require-package 'magit)
 (require 'magit)
 #+end_src
 
@@ -519,7 +520,7 @@ local master branch. I don't like that.
 **** Paredit
 
 #+begin_src emacs-lisp
-(require-package 'paredit)
+(tierack/require-package 'paredit)
 (require 'paredit)
 #+end_src
 
@@ -527,28 +528,29 @@ Personalize some Paredit keybindings.
 
 #+begin_src emacs-lisp
 (eval-after-load 'paredit
-  '(add-keybindings paredit-mode-map
-                    '(("\C-c)" . paredit-forward-slurp-sexp)
-                      ("\C-c}" . paredit-forward-barf-sexp)
-                      ("\C-c(" . paredit-backward-slurp-sexp)
-                      ("\C-c{" . paredit-backward-barf-sexp)
-                      ("\C-cw" . paredit-copy-as-kill))))
+  '(tierack/add-keybindings
+    paredit-mode-map
+    '(("\C-c)" . paredit-forward-slurp-sexp)
+      ("\C-c}" . paredit-forward-barf-sexp)
+      ("\C-c(" . paredit-backward-slurp-sexp)
+      ("\C-c{" . paredit-backward-barf-sexp)
+      ("\C-cw" . paredit-copy-as-kill))))
 #+end_src
 
 **** Rainbow delimiters
 
 #+begin_src emacs-lisp
-(require-package 'rainbow-delimiters)
+(tierack/require-package 'rainbow-delimiters)
 (require 'rainbow-delimiters)
 #+end_src
 
 *** Clojure
 
 #+begin_src emacs-lisp
-(require-package 'clojure-mode)
-(require-package 'clojurescript-mode)
-(require-package 'cider)
-(require-package 'typed-clojure-mode)
+(tierack/require-package 'clojure-mode)
+(tierack/require-package 'clojurescript-mode)
+(tierack/require-package 'cider)
+(tierack/require-package 'typed-clojure-mode)
 #+end_src
 
 Paredit and rainbows.
@@ -577,15 +579,16 @@ Support cljx (which you have to sometimes).
 Start a REPL with the test profile.
 
 #+begin_src emacs-lisp
-(defun cider-jack-in-test-profile ()
+(defun tierack/cider-jack-in-test-profile ()
   (interactive)
   (let ((cider-lein-parameters (concat "with-profile +test "
                                        cider-lein-parameters)))
     (cider-jack-in)))
 
 (eval-after-load 'clojure-mode
-  '(add-keybindings clojure-mode-map
-                    '(("\C-cj" . cider-jack-in-test-profile))))
+  '(tierack/add-keybindings
+    clojure-mode-map
+    '(("\C-cj" . tierack/cider-jack-in-test-profile))))
 #+end_src
 
 *** Elisp
@@ -603,7 +606,7 @@ Download chicken.el from the source (this chicken.el is not in a
 package?).
 
 #+begin_src emacs-lisp
-(download-unpackaged-lisp-file
+(tierack/download-unpackaged-lisp-file
  "http://code.call-cc.org/cgi-bin/gitweb.cgi?p=chicken-core.git;a=blob_plain;f=misc/chicken.el;hb=eb1e95e041f617a7076cd2dda74040cba0941ca0"
  "chicken.el")
 #+end_src
@@ -620,8 +623,9 @@ Set it up.
 (add-hook 'inferior-scheme-mode-hook 'paredit-mode)
 (add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
 
-(add-keybindings scheme-mode-map
-                 '(("\C-cj" . run-scheme)))
+(tierack/add-keybindings
+ scheme-mode-map
+ '(("\C-cj" . run-scheme)))
 #+end_src
 
 `C-cj` because it's like the keybinding already in place for Clojure.
@@ -635,19 +639,19 @@ Set it up.
 *** Javascript
 
 #+begin_src emacs-lisp
-(require-package 'nodejs-repl)
+(tierack/require-package 'nodejs-repl)
 #+end_src
 
 *** Docker
 
 #+begin_src emacs-lisp
-(require-package 'dockerfile-mode)
+(tierack/require-package 'dockerfile-mode)
 #+end_src
 
 *** Markdown
 
 #+begin_src emacs-lisp
-(require-package 'markdown-mode)
+(tierack/require-package 'markdown-mode)
 #+end_src
 
 A custom CSS for Markdown HTML output
@@ -669,7 +673,7 @@ Add auto-fill-mode.
 *** YAML
 
 #+begin_src emacs-lisp
-(require-package 'yaml-mode)
+(tierack/require-package 'yaml-mode)
 #+end_src
 
 ** $PATH
