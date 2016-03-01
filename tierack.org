@@ -163,6 +163,13 @@ A function to add a bunch of bindings to a keymap.
     (let ((key (car keymapping))
           (def (cdr keymapping)))
       (define-key keymap key def))))
+
+(defmacro tierack/add-keys-after-load (mode map bindings)
+  `(eval-after-load (quote ,mode)
+     (quote
+      (tierack/add-keybindings
+       ,map
+       (quote ,bindings)))))
 #+end_src
 
 *** Term
@@ -296,11 +303,11 @@ Rename shell buffers based on the basename of the current directory.
 Keybindings.
 
 #+begin_src emacs-lisp
-(eval-after-load 'shell
-  '(tierack/add-keybindings
-    shell-mode-map
-    '(("\C-cl" . erase-buffer)
-      ("\C-crb" . tierack/rename-shell-buffer-to-current-dir))))
+(tierack/add-keys-after-load
+ shell
+ shell-mode-map
+ (("\C-cl" . erase-buffer)
+  ("\C-crb" . tierack/rename-shell-buffer-to-current-dir)))
 #+end_src
 
 **** emacs-pager
@@ -527,14 +534,14 @@ local master branch. I don't like that.
 Personalize some Paredit keybindings.
 
 #+begin_src emacs-lisp
-(eval-after-load 'paredit
-  '(tierack/add-keybindings
-    paredit-mode-map
-    '(("\C-c)" . paredit-forward-slurp-sexp)
-      ("\C-c}" . paredit-forward-barf-sexp)
-      ("\C-c(" . paredit-backward-slurp-sexp)
-      ("\C-c{" . paredit-backward-barf-sexp)
-      ("\C-cw" . paredit-copy-as-kill))))
+(tierack/add-keys-after-load
+ paredit
+ paredit-mode-map
+ (("\C-c)" . paredit-forward-slurp-sexp)
+  ("\C-c}" . paredit-forward-barf-sexp)
+  ("\C-c(" . paredit-backward-slurp-sexp)
+  ("\C-c{" . paredit-backward-barf-sexp)
+  ("\C-cw" . paredit-copy-as-kill)))
 #+end_src
 
 **** Rainbow delimiters
@@ -585,10 +592,10 @@ Start a REPL with the test profile.
                                        cider-lein-parameters)))
     (cider-jack-in)))
 
-(eval-after-load 'clojure-mode
-  '(tierack/add-keybindings
-    clojure-mode-map
-    '(("\C-cj" . tierack/cider-jack-in-test-profile))))
+(tierack/add-keys-after-load
+ clojure-mode
+ clojure-mode-map
+ (("\C-cj" . tierack/cider-jack-in-test-profile)))
 #+end_src
 
 *** Elisp
@@ -623,9 +630,10 @@ Set it up.
 (add-hook 'inferior-scheme-mode-hook 'paredit-mode)
 (add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
 
-(tierack/add-keybindings
+(tierack/add-keys-after-load
+ sheme-mode
  scheme-mode-map
- '(("\C-cj" . run-scheme)))
+ (("\C-cj" . run-scheme)))
 #+end_src
 
 `C-cj` because it's like the keybinding already in place for Clojure.
