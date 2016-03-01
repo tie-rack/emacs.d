@@ -631,7 +631,7 @@ Set it up.
 (add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
 
 (tierack/add-keys-after-load
- sheme-mode
+ scheme-mode
  scheme-mode-map
  (("\C-cj" . run-scheme)))
 #+end_src
