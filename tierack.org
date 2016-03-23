@@ -43,6 +43,74 @@ opportunity for me to figure out what I really want.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 #+end_src
 
+*** Packages
+
+#+begin_src emacs-lisp
+(require 'package)
+#+end_src
+
+=require-package=  lovingly copied from [[github.com/purcell/emacs.d][purcell/emacs.d]].
+
+#+begin_src emacs-lisp
+(defun tierack/require-package (package)
+  "Install given PACKAGE if it's not."
+  (unless (package-installed-p package)
+    (package-install package)))
+#+end_src
+
+Add Melpa and Marmalade as sources.
+
+#+begin_src emacs-lisp
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+#+end_src
+
+Pin packages that warrant it.
+
+#+begin_src emacs-lisp
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+#+end_src
+
+Initialize and refresh (if necessary).
+
+#+begin_src emacs-lisp
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+#+end_src
+
+**** Quelpa
+
+#+begin_src emacs-lisp
+(unless (require 'quelpa nil t)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+#+end_src
+
+**** Unpackaged Lisp
+
+There is some code floating around outside of pacakges. Perhaps I want
+some of it sometimes.
+
+Make a directory for it to live in and add that to the load path.
+
+#+begin_src emacs-lisp
+(setq unpackaged-lisp-dir (expand-file-name "~/.emacs.d/unpackaged-lisp/"))
+(make-directory unpackaged-lisp-dir t)
+(add-to-list 'load-path unpackaged-lisp-dir)
+#+end_src
+
+And a helper function for downloading a file into it.
+
+#+begin_src emacs-lisp
+(defun tierack/download-unpackaged-lisp-file (url filename)
+  (url-copy-file url
+               (concat unpackaged-lisp-dir filename)
+               t))
+#+end_src
+
 *** Interface
 
 No startup message, no blinking, no menu bar, no tooltips... Simpler,
@@ -204,74 +272,6 @@ Start a new, named zsh term:
   (interactive "sname: ")
   (term "/bin/zsh")
   (rename-buffer buffer-name t))
-#+end_src
-
-*** Packages
-
-#+begin_src emacs-lisp
-(require 'package)
-#+end_src
-
-=require-package=  lovingly copied from [[github.com/purcell/emacs.d][purcell/emacs.d]].
-
-#+begin_src emacs-lisp
-(defun tierack/require-package (package)
-  "Install given PACKAGE if it's not."
-  (unless (package-installed-p package)
-    (package-install package)))
-#+end_src
-
-Add Melpa and Marmalade as sources.
-
-#+begin_src emacs-lisp
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-#+end_src
-
-Pin packages that warrant it.
-
-#+begin_src emacs-lisp
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-#+end_src
-
-Initialize and refresh (if necessary).
-
-#+begin_src emacs-lisp
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-#+end_src
-
-**** Quelpa
-
-#+begin_src emacs-lisp
-(unless (require 'quelpa nil t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
-#+end_src
-
-*** Unpackaged Lisp
-
-There is some code floating around outside of pacakges. Perhaps I want
-some of it sometimes.
-
-Make a directory for it to live in and add that to the load path.
-
-#+begin_src emacs-lisp
-(setq unpackaged-lisp-dir (expand-file-name "~/.emacs.d/unpackaged-lisp/"))
-(make-directory unpackaged-lisp-dir t)
-(add-to-list 'load-path unpackaged-lisp-dir)
-#+end_src
-
-And a helper function for downloading a file into it.
-
-#+begin_src emacs-lisp
-(defun tierack/download-unpackaged-lisp-file (url filename)
-  (url-copy-file url
-               (concat unpackaged-lisp-dir filename)
-               t))
 #+end_src
 
 *** Shell
