@@ -611,6 +611,26 @@ Start a REPL with the test profile.
  (("\C-cj" . tierack/cider-jack-in-test-profile)))
 #+end_src
 
+**** clj-refactor
+
+#+begin_src emacs-lisp
+(tierack/require-package 'clj-refactor)
+
+(require 'clj-refactor)
+
+(defun tierack/clj-refactor-hook ()
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c c"))
+
+(add-hook 'clojure-mode-hook #'tierack/clj-refactor-hook)
+
+(eval-after-load 'clj-refactor
+  '(progn
+     (setq cljr-favor-private-functions nil)
+     (setq cljr-favor-prefix-notation nil)))
+#+end_src
+
 *** Elisp
 
 #+begin_src emacs-lisp
