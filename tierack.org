@@ -151,6 +151,19 @@ like other editors' cmd-T fuzzy filename searching.
 (setq ido-enable-flex-matching t)
 #+end_src
 
+**** find-file-in-project
+
+If =flex-matching= is a little like other editors' cmd-T fuzzy
+filename searching, find-file-in-project is even moreso.
+
+#+begin_src emacs-lisp
+(tierack/require-package 'find-file-in-project)
+
+(setq ffip-prefer-ido-mode t)
+
+(global-set-key "\C-ct" 'ffip)
+#+end_src
+
 **** Ibuffer
 
 =Ibuffer= is a better buffer list.
