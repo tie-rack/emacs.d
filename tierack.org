@@ -586,6 +586,7 @@ For Cider, too.
 #+begin_src emacs-lisp
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook 'eldoc-mode)
 #+end_src
 
 Support cljx (which you have to sometimes).
