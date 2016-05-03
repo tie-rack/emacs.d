@@ -487,12 +487,13 @@ I like having this around.
 
 #+begin_src emacs-lisp
 (tierack/require-package 'nyan-mode)
-(when (display-graphic-p)
-  (require 'nyan-mode)
 
-  (setq nyan-wavy-trail nil)
-  (setq nyan-bar-length 20)
-  (nyan-mode))
+(require 'nyan-mode)
+
+(setq nyan-wavy-trail nil)
+(setq nyan-bar-length 20)
+(setq nyan-cat-face-number 4)
+(nyan-mode)
 #+end_src
 
 *** Org-mode
