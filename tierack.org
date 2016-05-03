@@ -106,9 +106,16 @@ And a helper function for downloading a file into it.
 
 #+begin_src emacs-lisp
 (defun tierack/download-unpackaged-lisp-file (url filename)
-  (url-copy-file url
-                 (concat unpackaged-lisp-dir filename)
-                 t))
+  (let ((destination (concat unpackaged-lisp-dir filename)))
+    (if (file-exists-p destination)
+        (message "%s already exists" destination)
+      (url-copy-file url
+                     destination
+                     t))))
+
+(defun tierack/redownload-unpackaged-lisp-file (url filename)
+  (delete-file (concat unpackaged-lisp-dir filename))
+  (tierack/download-unpackaged-lisp-file url filename))
 #+end_src
 
 *** Interface
