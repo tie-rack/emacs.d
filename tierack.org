@@ -687,11 +687,6 @@ Set it up.
 (tierack/require-package 'cargo)
 
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-(tierack/add-keys-after-load
- rust-mode
- rust-mode-map
- (("\C-crf" . rust-format-buffer)))
 #+end_src
 
 *** Ruby
