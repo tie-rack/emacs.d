@@ -735,17 +735,6 @@ Add auto-fill-mode.
 (tierack/require-package 'yaml-mode)
 #+end_src
 
-** $PATH
-
-Here's something I should re-evaluate at some point. I was having
-trouble with the path from emacs. This is where I ended up.
-
-#+begin_src emacs-lisp
-(setq path "/Users/cms/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin")
-(setenv "PATH" path)
-(setq exec-path (append '("/Users/cms/bin" "/usr/local/bin" "/usr/local/sbin") exec-path))
-#+end_src
-
 ** erc
 
 #+begin_src emacs-lisp
