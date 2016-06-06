@@ -1,5 +1,27 @@
 * Work computer settings
 
+** Doing things based on frame size
+
+I have my laptop screen and my external montior, and there are
+configurations I want to be different between them. This macro helps.
+
+#+begin_src emacs-lisp
+(defmacro tierack/little-frame-big-frame
+    (name small big)
+  "Eval the first form if the frame is small (on the laptop
+  screen), the second if the frame is big (on the external
+  monitor)."
+  (let ((fn-name (intern (concat "tierack/" (symbol-name name)))))
+    `(progn
+       (defun ,fn-name
+           ()
+         (if (< (frame-width) 165)
+             ,small
+           ,big))
+       (add-hook 'window-configuration-change-hook
+                 (quote ,fn-name)))))
+#+end_src
+
 ** Font
 
 #+begin_src emacs-lisp
@@ -9,13 +31,21 @@
 *** Adjusting font size based on frame size
 
 #+begin_src emacs-lisp
-(defun tierack/drive-font-size-from-frame-size ()
-  (if (< (frame-width) 165)
-      (set-face-attribute 'default (selected-frame) :height 160)
-    (set-face-attribute 'default (selected-frame) :height 180)))
+(tierack/little-frame-big-frame
+ drive-font-size-from-frame-size
+ (set-face-attribute 'default (selected-frame) :height 160)
+ (set-face-attribute 'default (selected-frame) :height 180))
+#+end_src
 
-(add-hook 'window-configuration-change-hook
-          'tierack/drive-font-size-from-frame-size)
+** Transparency
+
+I only want it on the external monitor
+
+#+begin_src emacs-lisp
+(tierack/little-frame-big-frame
+ transparency-when-big
+ (set-frame-parameter (selected-frame) 'alpha 100)
+ (set-frame-parameter (selected-frame) 'alpha 92))
 #+end_src
 
 ** Rust
