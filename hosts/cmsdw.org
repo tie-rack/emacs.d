@@ -11,7 +11,7 @@ configurations I want to be different between them. This macro helps.
   "Eval the first form if the frame is small (on the laptop
   screen), the second if the frame is big (on the external
   monitor)."
-  (let ((fn-name (intern (concat "tierack/" (symbol-name name)))))
+  (let ((fn-name (make-symbol (concat "tierack/" (symbol-name name)))))
     `(progn
        (defun ,fn-name
            ()
