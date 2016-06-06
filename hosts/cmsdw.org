@@ -1,0 +1,52 @@
+* Work computer settings
+
+** Font
+
+#+begin_src emacs-lisp
+(set-frame-font "Inconsolata")
+#+end_src
+
+*** Adjusting font size based on frame size
+
+#+begin_src emacs-lisp
+(defun tierack/drive-font-size-from-frame-size ()
+  (if (< (frame-width) 165)
+      (set-face-attribute 'default (selected-frame) :height 160)
+    (set-face-attribute 'default (selected-frame) :height 180)))
+
+(add-hook 'window-configuration-change-hook
+          'tierack/drive-font-size-from-frame-size)
+#+end_src
+
+** Rust
+
+#+begin_src emacs-lisp
+(add-to-list 'exec-path "/Users/cms/.cargo/bin")
+#+end_src
+
+** SQL
+
+#+begin_src emacs-lisp
+(add-to-list 'exec-path "/Applications/Postgres.app/Contents/Versions/9.5/bin")
+#+end_src
+
+Let's try sqlup.
+
+#+begin_src emacs-lisp
+(tierack/require-package 'sqlup-mode)
+
+(add-hook 'sql-interactive-mode-hook 'sqlup-mode)
+(global-set-key "\C-csu" 'sqlup-capitalize-keywords-in-region)
+#+end_src
+
+** PATH stuff
+
+This is where I am: build up the =*exec-path*= and, as the very last
+thing done during startup, use that to set the PATH.
+
+#+begin_src emacs-lisp
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/Users/cms/bin")
+
+(setenv "PATH" (s-join ":" exec-path))
+#+end_src

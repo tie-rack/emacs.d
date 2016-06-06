@@ -8,6 +8,7 @@
 /server
 repl-port
 tierack.el
+/hosts/*.el
 .chicken-scheme-symbols-dump.el
 /tramp
 unpackaged-lisp/

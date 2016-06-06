@@ -749,7 +749,17 @@ Add auto-fill-mode.
 
 ** Last but not least
 
-If there are machine-specific configurations, load those:
+If there is a config file for this machine, load that:
+
+#+begin_src emacs-lisp
+(let* ((hostname (car (split-string system-name "\\.")))
+       (config-file (expand-file-name
+                     (concat "~/.emacs.d/hosts/" hostname ".org"))))
+  (when (file-exists-p config-file)
+    (org-babel-load-file config-file)))
+#+end_src
+
+If there are unmaintained machine-specific configurations, load those:
 
 #+begin_src emacs-lisp
 (if (file-exists-p "~/.emacslocal.el")
