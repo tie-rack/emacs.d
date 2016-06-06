@@ -46,6 +46,7 @@ thing done during startup, use that to set the PATH.
 
 #+begin_src emacs-lisp
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/usr/local/sbin")
 (add-to-list 'exec-path "/Users/cms/bin")
 
 (setenv "PATH" (s-join ":" exec-path))
