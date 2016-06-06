@@ -41,7 +41,7 @@ Let's try sqlup.
 
 ** PATH stuff
 
-This is where I am: build up the =*exec-path*= and, as the very last
+This is where I am: build up the =exec-path= and, as the very last
 thing done during startup, use that to set the PATH.
 
 #+begin_src emacs-lisp
