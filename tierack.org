@@ -243,6 +243,12 @@ I'd rather this than seeing "C-x C-g is undefined" all the time.
 (global-set-key "\C-crg" 'rgrep)
 #+end_src
 
+I like Windmove.
+
+#+begin_src emacs-lisp
+(windmove-default-keybindings)
+#+end_src
+
 A function to add a bunch of bindings to a keymap.
 
 #+begin_src emacs-lisp
