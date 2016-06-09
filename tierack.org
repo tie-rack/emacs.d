@@ -600,13 +600,13 @@ For Cider, too.
 #+begin_src emacs-lisp
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'cider-repl-mode-hook 'eldoc-mode)
 #+end_src
 
-Support cljx (which you have to sometimes).
+And eldoc.
 
 #+begin_src emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
+(add-hook 'cider-mode-hook 'eldoc-mode)
+(add-hook 'cider-repl-mode-hook 'eldoc-mode)
 #+end_src
 
 **** CIDER
