@@ -474,26 +474,6 @@ I guess I wrote my own color themes?
 
 #+end_src
 
-*** OS X
-
-If you want to copy to and paste from OS X into Emacs, it requires a
-little bit of help.
-
-#+begin_src emacs-lisp
-(when (string-equal "darwin" system-type)
-  (defun tierack/copy-from-osx ()
-    (shell-command-to-string "pbpaste"))
-
-  (defun tierack/paste-to-osx (text &optional push)
-    (let ((process-connection-type nil))
-      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-        (process-send-string proc text)
-        (process-send-eof proc))))
-
-  (setq interprogram-cut-function 'tierack/paste-to-osx)
-  (setq interprogram-paste-function 'tierack/copy-from-osx))
-#+end_src
-
 *** Nyan
 
 I like having this around.
