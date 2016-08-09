@@ -687,6 +687,12 @@ Set it up.
 (tierack/require-package 'nodejs-repl)
 #+end_src
 
+*** Less
+
+#+begin_src emacs-lisp
+(tierack/require-package 'less-css-mode)
+#+end_src
+
 *** Docker
 
 #+begin_src emacs-lisp
