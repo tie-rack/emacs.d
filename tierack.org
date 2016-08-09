@@ -727,6 +727,38 @@ Add auto-fill-mode.
 (tierack/require-package 'yaml-mode)
 #+end_src
 
+*** Compilation
+
+Scroll to keep up with the compilation buffer.
+
+#+begin_src emacs-lisp
+(setq compilation-scroll-output t)
+#+end_src
+
+A minor mode for compiling on save. Cobbled together from [[http://stackoverflow.com/a/14404821][this
+StackOverflow answer]] and [[https://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/][this blog post]]:
+
+#+begin_src emacs-lisp
+(defun tierack/interrupt-and-recompile ()
+  "Interrupt old compilation, if any, and recompile."
+  (interactive)
+  (ignore-errors
+    (process-kill-without-query
+     (get-buffer-process
+      (get-buffer "*compilation*")))
+    (kill-buffer "*compilation*"))
+  (recompile))
+
+(define-minor-mode compile-on-save-mode
+  "Minor mode to automatically call `recompile' whenever the
+current buffer is saved."
+  :lighter " CoS"
+  (if compile-on-save-mode
+      (progn (make-local-variable 'after-save-hook)
+             (add-hook 'after-save-hook 'tierack/interrupt-and-recompile nil t))
+    (kill-local-variable 'after-save-hook)))
+#+end_src
+
 ** erc
 
 #+begin_src emacs-lisp
