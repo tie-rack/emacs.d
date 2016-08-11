@@ -769,6 +769,8 @@ current buffer is saved."
       (progn (make-local-variable 'after-save-hook)
              (add-hook 'after-save-hook 'tierack/interrupt-and-recompile nil t))
     (kill-local-variable 'after-save-hook)))
+
+(global-set-key "\C-ccs" #'compile-on-save-mode)
 #+end_src
 
 ** erc
