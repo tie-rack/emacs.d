@@ -705,6 +705,12 @@ Set it up.
 (tierack/require-package 'less-css-mode)
 #+end_src
 
+*** Go
+
+#+begin_src emacs-lisp
+(tierack/require-package 'go-mode)
+#+end_src
+
 *** Docker
 
 #+begin_src emacs-lisp
