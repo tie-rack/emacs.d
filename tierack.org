@@ -179,6 +179,13 @@ filename searching, find-file-in-project is even moreso.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
 
+**** Company
+
+#+begin_src emacs-lisp
+(tierack/require-package 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
 **** Quitting
 
 Sometimes I quit before I'm really done. Sometimes I just hit the
