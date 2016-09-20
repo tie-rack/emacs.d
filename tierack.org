@@ -75,7 +75,6 @@ Pin packages that warrant it.
 Initialize and refresh (if necessary).
 
 #+begin_src emacs-lisp
-(package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 #+end_src
