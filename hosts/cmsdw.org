@@ -60,6 +60,17 @@ I only want it on the external monitor
 (add-to-list 'exec-path "/Applications/Postgres.app/Contents/Versions/9.5/bin")
 #+end_src
 
+Fix the prompt for Postgres (at least). Taken from [[https://www.emacswiki.org/emacs/SqlMode][EmacsWiki: SqlMode]].
+
+#+begin_src emacs-lisp
+(defun tierack/set-psql-prompt-regexps ()
+  (setq sql-prompt-regexp "^[_[:alpha:]]*[=][#>] ")
+  (setq sql-prompt-cont-regexp "^[_[:alpha:]]*[-][#>] "))
+
+(add-hook 'sql-interactive-mode-hook
+          #'tierack/set-psql-prompt-regexps)
+#+end_src
+
 Let's try sqlup.
 
 #+begin_src emacs-lisp
