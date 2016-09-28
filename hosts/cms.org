@@ -1,5 +1,11 @@
 * Home computer settings
 
+** Font
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :height 140)
+#+end_src
+
 ** PATH stuff
 
 #+begin_src emacs-lisp
