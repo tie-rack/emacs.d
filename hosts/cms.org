@@ -6,7 +6,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/usr/local/sbin")
 (add-to-list 'exec-path "/Users/cms/bin")
-(add-to-list 'exec-path "/Library/TeX/texbin")
 
 (setenv "PATH" (s-join ":" exec-path))
 #+end_src
