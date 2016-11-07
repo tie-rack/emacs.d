@@ -813,6 +813,20 @@ current buffer is saved."
 (global-set-key "\C-ccs" #'compile-on-save-mode)
 #+end_src
 
+Colorize the compilation buffer. (Thanks to [[http://stackoverflow.com/a/13408008][this StackOverflow
+answer]].)
+
+#+begin_src emacs-lisp
+(require 'ansi-color)
+
+(defun tierack/colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+
+(add-hook 'compilation-filter-hook #'tierack/colorize-compilation-buffer)
+#+end_src
+
 ** erc
 
 #+begin_src emacs-lisp
