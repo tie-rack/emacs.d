@@ -26,6 +26,7 @@ configurations I want to be different between them. This macro helps.
 
 #+begin_src emacs-lisp
 (set-frame-font "Inconsolata")
+(set-face-attribute 'default nil :height 160)
 #+end_src
 
 *** Adjusting font size based on frame size
@@ -45,7 +46,7 @@ I only want it on the external monitor
 (tierack/little-frame-big-frame
  transparency-when-big
  (set-frame-parameter (selected-frame) 'alpha 100)
- (set-frame-parameter (selected-frame) 'alpha 92))
+ (set-frame-parameter (selected-frame) 'alpha '(92 . 70)))
 #+end_src
 
 ** Rust
