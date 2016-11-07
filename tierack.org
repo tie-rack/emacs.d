@@ -548,6 +548,13 @@ local master branch. I don't like that.
 (setq magit-branch-arguments (remove "--track" magit-branch-arguments))
 #+end_src
 
+Maybe I don't need VC showing git status, since it's often long and
+sometimes wrong.
+
+#+begin_src emacs-lisp
+(setq vc-handled-backends (delq 'Git vc-handled-backends))
+#+end_src
+
 *** For Lisps
 
 **** Paredit
