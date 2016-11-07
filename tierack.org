@@ -182,6 +182,7 @@ filename searching, find-file-in-project is even moreso.
 
 #+begin_src emacs-lisp
 (tierack/require-package 'company)
+(require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 #+end_src
 
@@ -282,28 +283,6 @@ isn't what we want.
 (tierack/require-package 'browse-kill-ring)
 
 (global-set-key "\M-y" #'browse-kill-ring)
-#+end_src
-
-*** Mode line
-
-Use dim to clean up mode list.
-
-#+begin_src emacs-lisp
-(tierack/require-package 'dim)
-
-(require 'dim)
-
-(dim-major-names
- '((js-mode "js")))
-
-(dim-minor-names
- '((auto-revert-mode "")
-   (cider-mode " cider")
-   (clj-refactor-mode " λr")
-   (company-mode "")
-   (compilation-in-progress " *c*")
-   (eldoc-mode "")
-   (paredit-mode " ()")))
 #+end_src
 
 *** Term
@@ -825,6 +804,29 @@ answer]].)
   (toggle-read-only))
 
 (add-hook 'compilation-filter-hook #'tierack/colorize-compilation-buffer)
+#+end_src
+
+*** Mode line
+
+Use dim to clean up mode list.
+
+#+begin_src emacs-lisp
+(tierack/require-package 'dim)
+
+(require 'dim)
+
+(dim-major-names
+ '((js-mode "js")
+   (lisp-interaction-mode "λ-eval")))
+
+(dim-minor-names
+ '((auto-revert-mode "")
+   (cider-mode " cider")
+   (clj-refactor-mode " λr")
+   (company-mode "")
+   (compilation-in-progress " *c*")
+   (eldoc-mode "")
+   (paredit-mode " ()")))
 #+end_src
 
 ** erc
