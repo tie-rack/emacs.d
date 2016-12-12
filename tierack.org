@@ -70,6 +70,7 @@ Pin packages that warrant it.
 
 #+begin_src emacs-lisp
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(magit . "melpa-stable") t)
 #+end_src
 
 Initialize and refresh (if necessary).
