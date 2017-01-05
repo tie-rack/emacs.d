@@ -504,7 +504,7 @@ I like having this around.
 (require 'nyan-mode)
 
 (setq nyan-wavy-trail nil)
-(setq nyan-bar-length 20)
+(setq nyan-bar-length 12)
 (setq nyan-cat-face-number 4)
 (nyan-mode)
 #+end_src
@@ -547,13 +547,6 @@ local master branch. I don't like that.
 
 #+begin_src emacs-lisp
 (setq magit-branch-arguments (remove "--track" magit-branch-arguments))
-#+end_src
-
-Maybe I don't need VC showing git status, since it's often long and
-sometimes wrong.
-
-#+begin_src emacs-lisp
-(setq vc-handled-backends (delq 'Git vc-handled-backends))
 #+end_src
 
 *** For Lisps
