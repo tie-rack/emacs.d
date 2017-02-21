@@ -225,6 +225,19 @@ Make sure there's a final newline when saving, but also no other extraneous whit
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 
+Indent some files based on their mode.
+
+#+begin_src emacs-lisp
+(defvar tierack/auto-indent-modes
+  '(clojure-mode emacs-lisp-mode))
+
+(defun tierack/indent-maybe ()
+  (when (member major-mode tierack/auto-indent-modes)
+    (indent-region (point-min) (point-max))))
+
+(add-hook 'before-save-hook #'tierack/indent-maybe)
+#+end_src
+
 *** Keybindings
 
 My left pinky's not always off the shift key by the time the right
