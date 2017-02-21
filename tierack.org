@@ -168,6 +168,9 @@ filename searching, find-file-in-project is even moreso.
 
 (setq ffip-prefer-ido-mode t)
 
+(setq ffip-find-options
+      "-not -regex \"\\./target/.*\" -not -regex \"\\./\\.git/.*\"")
+
 (global-set-key "\C-ct" 'ffip)
 #+end_src
 
