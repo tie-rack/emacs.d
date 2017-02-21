@@ -708,8 +708,12 @@ Set it up.
 #+begin_src emacs-lisp
 (tierack/require-package 'rust-mode)
 (tierack/require-package 'cargo)
+(tierack/require-package 'racer)
 
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook #'cargo-minor-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
 #+end_src
 
 *** Ruby
