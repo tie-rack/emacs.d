@@ -203,13 +203,13 @@ keys. This really does help me.
 
 *** Whitespace
 
-No tabs, please.
+**** No tabs
 
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil)
 #+end_src
 
-Two spaces for everything.
+**** Two spaces
 
 #+begin_src emacs-lisp
 (setq-default tab-width 2)
@@ -217,6 +217,8 @@ Two spaces for everything.
 (setq-default js-indent-level 2)
 (setq-default css-indent-offset 2)
 #+end_src
+
+**** Before save hooks
 
 Make sure there's a final newline when saving, but also no other extraneous whitespace.
 
