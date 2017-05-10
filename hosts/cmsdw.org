@@ -15,7 +15,7 @@ configurations I want to be different between them. This macro helps.
     `(progn
        (defun ,fn-name
            ()
-         (if (< (frame-width) 165)
+         (if (< (frame-width) 185)
              ,small
            ,big))
        (add-hook 'window-configuration-change-hook
@@ -25,8 +25,8 @@ configurations I want to be different between them. This macro helps.
 ** Font
 
 #+begin_src emacs-lisp
-(set-frame-font "Inconsolata")
-(set-face-attribute 'default nil :height 160)
+(set-frame-font "Fira Mono")
+(set-face-attribute 'default nil :height 120)
 #+end_src
 
 *** Adjusting font size based on frame size
@@ -34,8 +34,8 @@ configurations I want to be different between them. This macro helps.
 #+begin_src emacs-lisp
 (tierack/little-frame-big-frame
  drive-font-size-from-frame-size
- (set-face-attribute 'default (selected-frame) :height 160)
- (set-face-attribute 'default (selected-frame) :height 180))
+ (set-face-attribute 'default (selected-frame) :height 120)
+ (set-face-attribute 'default (selected-frame) :height 160))
 #+end_src
 
 ** Transparency
