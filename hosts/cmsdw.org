@@ -91,5 +91,6 @@ thing done during startup, use that to set the PATH.
 (add-to-list 'exec-path "/usr/local/sbin")
 (add-to-list 'exec-path "/Users/cms/bin")
 
+(require 's)
 (setenv "PATH" (s-join ":" exec-path))
 #+end_src
