@@ -3,6 +3,7 @@
 ** Font
 
 #+begin_src emacs-lisp
+(set-frame-font "Fira Mono")
 (set-face-attribute 'default nil :height 140)
 #+end_src
 
