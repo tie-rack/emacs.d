@@ -118,6 +118,13 @@ And a helper function for downloading a file into it.
   (tierack/download-unpackaged-lisp-file url filename))
 #+end_src
 
+**** Utility packages
+
+#+begin_src emacs-lisp
+(tierack/require-package 's)
+(require 's)
+#+end_src
+
 *** Interface
 
 No startup message, no blinking, no menu bar, no tooltips... Simpler,
