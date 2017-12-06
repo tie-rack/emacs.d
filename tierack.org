@@ -860,7 +860,8 @@ Use dim to clean up mode list.
 (require 'dim)
 
 (dim-major-names
- '((js-mode "js")
+ '((clojure-mode "clj")
+   (js-mode "js")
    (lisp-interaction-mode "λ-eval")))
 
 (dim-minor-names
