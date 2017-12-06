@@ -4,7 +4,8 @@ body {
     background-color: #fdfdfd;
     padding: 0px 20px;
     font-size: 18px;
-    width: 40rem;
+    width: 70%;
+    max-width: 50rem;
     margin: auto;
     line-height: 1.8rem;
 }
@@ -26,6 +27,13 @@ code {
 
 code:hover {
     background-color: #ddd;
+}
+
+pre {
+  background-color: #f7f7f7;
+  font-size: 13px;
+  line-height: 1.4em;
+  padding: 2em;
 }
 
 blockquote {
