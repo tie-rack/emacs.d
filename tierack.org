@@ -636,6 +636,13 @@ And eldoc.
 
 **** CIDER
 
+Some configuration:
+
+#+begin_src emacs-lisp
+(setq cider-repl-prompt-function #'cider-repl-prompt-abbreviated)
+(setq cider-repl-use-pretty-printing nil)
+#+end_src
+
 Start a REPL with the test profile.
 
 #+begin_src emacs-lisp
@@ -649,6 +656,15 @@ Start a REPL with the test profile.
  clojure-mode
  clojure-mode-map
  (("\C-cj" . tierack/cider-jack-in-test-profile)))
+#+end_src
+
+Figwheel in a cljs REPL:
+
+#+begin_src emacs-lisp
+(setq cider-cljs-lein-repl
+	"(do (require 'figwheel-sidecar.repl-api)
+         (figwheel-sidecar.repl-api/start-figwheel!)
+         (figwheel-sidecar.repl-api/cljs-repl))")
 #+end_src
 
 **** clj-refactor
