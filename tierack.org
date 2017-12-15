@@ -696,36 +696,30 @@ Figwheel in a cljs REPL:
 
 *** Scheme
 
-I'm using Chicken.
-
-Download chicken.el from the source (this chicken.el is not in a
-package?).
+I'm using Guile.
 
 #+begin_src emacs-lisp
-(tierack/download-unpackaged-lisp-file
- "http://code.call-cc.org/cgi-bin/gitweb.cgi?p=chicken-core.git;a=blob_plain;f=misc/chicken.el;hb=eb1e95e041f617a7076cd2dda74040cba0941ca0"
- "chicken.el")
-#+end_src
-
-Set it up.
-
-#+begin_src emacs-lisp
-(setq scheme-program-name "csi -:c")
-(require 'chicken)
-
 (add-hook 'scheme-mode-hook 'paredit-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
 (add-hook 'inferior-scheme-mode-hook 'paredit-mode)
 (add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
-
-(tierack/add-keys-after-load
- scheme-mode
- scheme-mode-map
- (("\C-cj" . run-scheme)))
 #+end_src
 
-`C-cj` because it's like the keybinding already in place for Clojure.
+**** Geiser
+
+#+begin_src emacs-lisp
+(tierack/require-package 'geiser)
+#+end_src
+
+Set it up.
+
+#+begin_src emacs-lisp
+(setq geiser-active-implementations '(guile))
+
+(add-hook 'geiser-repl-mode-hook 'paredit-mode)
+(add-hook 'geiser-repl-mode-hook 'rainbow-delimiters-mode)
+#+end_src
 
 *** Rust
 
