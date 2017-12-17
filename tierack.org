@@ -727,6 +727,7 @@ Set it up.
 (tierack/require-package 'rust-mode)
 (tierack/require-package 'cargo)
 (tierack/require-package 'racer)
+(tierack/require-package 'toml-mode)
 
 (add-hook 'rust-mode-hook #'cargo-minor-mode)
 (add-hook 'rust-mode-hook #'racer-mode)
