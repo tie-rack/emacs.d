@@ -16,3 +16,6 @@ unpackaged-lisp/
 /%backup%~
 /bookmarks
 /eshell
+request/
+org-gcal/
+.trello
