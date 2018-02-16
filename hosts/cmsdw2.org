@@ -9,7 +9,7 @@ configurations I want to be able to swap between.
 (setq tierack/modes
       (list (lambda ()
               (set-face-attribute 'default (selected-frame) :height 160)
-              (set-frame-parameter (selected-frame) 'alpha '(92 . 85)))
+              (set-frame-parameter (selected-frame) 'alpha 97))
             (lambda ()
               (set-face-attribute 'default (selected-frame) :height 140)
               (set-frame-parameter (selected-frame) 'alpha 100))))
