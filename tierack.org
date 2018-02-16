@@ -49,81 +49,34 @@ opportunity for me to figure out what I really want.
 (require 'package)
 #+end_src
 
-=require-package=  lovingly copied from [[github.com/purcell/emacs.d][purcell/emacs.d]].
-
-#+begin_src emacs-lisp
-(defun tierack/require-package (package)
-  "Install given PACKAGE if it's not."
-  (unless (package-installed-p package)
-    (package-install package)))
-#+end_src
-
 Add Melpa and Marmalade as sources.
 
 #+begin_src emacs-lisp
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 #+end_src
 
-Pin packages that warrant it.
+**** use-package
 
 #+begin_src emacs-lisp
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(magit . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(suggest . "melpa-stable") t)
-#+end_src
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-Initialize and refresh (if necessary).
+(eval-when-compile
+  (require 'use-package))
 
-#+begin_src emacs-lisp
-(unless package-archive-contents
-  (package-refresh-contents))
-#+end_src
+(setq use-package-always-ensure t)
 
-**** Quelpa
-
-#+begin_src emacs-lisp
-(unless (require 'quelpa nil t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
-#+end_src
-
-**** Unpackaged Lisp
-
-There is some code floating around outside of pacakges. Perhaps I want
-some of it sometimes.
-
-Make a directory for it to live in and add that to the load path.
-
-#+begin_src emacs-lisp
-(setq unpackaged-lisp-dir (expand-file-name "~/.emacs.d/unpackaged-lisp/"))
-(make-directory unpackaged-lisp-dir t)
-(add-to-list 'load-path unpackaged-lisp-dir)
-#+end_src
-
-And a helper function for downloading a file into it.
-
-#+begin_src emacs-lisp
-(defun tierack/download-unpackaged-lisp-file (url filename)
-  (let ((destination (concat unpackaged-lisp-dir filename)))
-    (if (file-exists-p destination)
-        (message "%s already exists" destination)
-      (url-copy-file url
-                     destination
-                     t))))
-
-(defun tierack/redownload-unpackaged-lisp-file (url filename)
-  (delete-file (concat unpackaged-lisp-dir filename))
-  (tierack/download-unpackaged-lisp-file url filename))
+(use-package delight)
 #+end_src
 
 **** Utility packages
 
 #+begin_src emacs-lisp
-(tierack/require-package 's)
-(require 's)
+(use-package s)
 #+end_src
 
 *** Interface
@@ -172,14 +125,12 @@ If =flex-matching= is a little like other editors' cmd-T fuzzy
 filename searching, find-file-in-project is even moreso.
 
 #+begin_src emacs-lisp
-(tierack/require-package 'find-file-in-project)
-
-(setq ffip-prefer-ido-mode t)
-
-(setq ffip-find-options
-      "-not -regex \"\\./target/.*\" -not -regex \"\\./\\.git/.*\"")
-
-(global-set-key "\C-ct" 'ffip)
+(use-package find-file-in-project
+  :init
+  (setq ffip-prefer-ido-mode t)
+  (setq ffip-find-options
+        "-not -regex \"\\./target/.*\" -not -regex \"\\./\\.git/.*\"")
+  :bind (("C-c t" . ffip)))
 #+end_src
 
 **** Ibuffer
@@ -193,9 +144,11 @@ filename searching, find-file-in-project is even moreso.
 **** Company
 
 #+begin_src emacs-lisp
-(tierack/require-package 'company)
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
+(use-package company
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-tooltip-align-annotations t)
+  :delight)
 #+end_src
 
 **** Quitting
@@ -272,10 +225,13 @@ I'd rather this than seeing "C-x C-g is undefined" all the time.
 (global-set-key "\C-x\C-g" 'keyboard-quit)
 #+end_src
 
-=rgrep= has proven to be an effective tool.
+=ripgrep= has proven to be an effective tool.
 
 #+begin_src emacs-lisp
-(global-set-key "\C-crg" 'rgrep)
+(use-package rg
+  :init
+  (rg-enable-default-bindings))
+?
 #+end_src
 
 I like Windmove.
@@ -307,9 +263,8 @@ Use =browse-kill-ring= once the very first thing in the kill ring
 isn't what we want.
 
 #+begin_src emacs-lisp
-(tierack/require-package 'browse-kill-ring)
-
-(global-set-key "\M-y" #'browse-kill-ring)
+(use-package browse-kill-ring
+  :bind (("M-y" . browse-kill-ring)))
 #+end_src
 
 *** Term
@@ -382,35 +337,36 @@ Keybindings.
   ("\C-crb" . tierack/rename-shell-buffer-to-current-dir)))
 #+end_src
 
-**** emacs-pager
-
-#+begin_src emacs-lisp
-(quelpa '(emacs-pager :repo "mbriggs/emacs-pager" :fetcher github))
-(add-to-list 'auto-mode-alist '("\\.emacs-pager$" . emacs-pager-mode))
-#+end_src
-
 *** Ibuffer-vc
-
-#+begin_src emacs-lisp
-(tierack/require-package 'ibuffer-vc)
-#+end_src
 
 Configure =Ibuffer= to split buffers into groups based on version
 control repos.
 
 #+begin_src emacs-lisp
-(add-hook 'ibuffer-hook
-  (lambda ()
-    (ibuffer-vc-set-filter-groups-by-vc-root)
+(defun tierack/ibuffer-sort-by-vc-and-alpha ()
+  (ibuffer-vc-set-filter-groups-by-vc-root)
     (unless (eq ibuffer-sorting-mode 'alphabetic)
-      (ibuffer-do-sort-by-alphabetic))))
+      (ibuffer-do-sort-by-alphabetic)))
+
+(use-package ibuffer-vc
+  :hook ((ibuffer . tierack/ibuffer-sort-by-vc-and-alpha)))
 #+end_src
 
 *** Color theme
 
 #+begin_src emacs-lisp
-(tierack/require-package 'color-theme)
-(require 'color-theme)
+(use-package color-theme
+  :init
+  ;; This I don't understand, but color-theme just won't go without
+  ;; this themes directory existing... and it doesn't
+  (let* ((color-theme-dir (seq-find
+                           (lambda (dir)
+                             (string-match-p "/color-theme-[0-9]+" dir))
+                           load-path))
+         (color-themes-dir (concat (file-name-as-directory color-theme-dir)
+                                   "themes")))
+    (unless (file-exists-p color-themes-dir)
+      (make-directory color-themes-dir))))
 #+end_src
 
 I guess I wrote my own color themes?
@@ -525,14 +481,12 @@ I guess I wrote my own color themes?
 I like having this around.
 
 #+begin_src emacs-lisp
-(tierack/require-package 'nyan-mode)
-
-(require 'nyan-mode)
-
-(setq nyan-wavy-trail nil)
-(setq nyan-bar-length 12)
-(setq nyan-cat-face-number 4)
-(nyan-mode)
+(use-package nyan-mode
+  :init
+  (setq nyan-wavy-trail nil)
+  (setq nyan-bar-length 12)
+  (setq nyan-cat-face-number 4)
+  (nyan-mode))
 #+end_src
 
 *** Org-mode
@@ -551,96 +505,32 @@ Highlight code blocks and preserve their indentation.
 90% of my interaction with git comes from magit.
 
 #+begin_src emacs-lisp
-(tierack/require-package 'magit)
-(require 'magit)
-#+end_src
+(use-package magit
+  :config
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  (setq magit-branch-arguments (remove "--track" magit-branch-arguments))
+  :bind (("C-c m s" . magit-status)))
 
-I've read these instructions.
-
-#+begin_src emacs-lisp
-(setq magit-last-seen-setup-instructions "1.4.0")
-#+end_src
-
-Keys to get into it.
-
-#+begin_src emacs-lisp
-(global-set-key "\C-cms" 'magit-status)
-#+end_src
-
-The new (2.1.0) behavior of creating branches is weird to me. It sets
-the upstream as whatever the basis of the branch is, so it's often the
-local master branch. I don't like that.
-
-#+begin_src emacs-lisp
-(setq magit-branch-arguments (remove "--track" magit-branch-arguments))
-#+end_src
-
-*** For Lisps
-
-**** Paredit
-
-#+begin_src emacs-lisp
-(tierack/require-package 'paredit)
-(require 'paredit)
-#+end_src
-
-Personalize some Paredit keybindings.
-
-#+begin_src emacs-lisp
-(tierack/add-keys-after-load
- paredit
- paredit-mode-map
- (("\C-c)" . paredit-forward-slurp-sexp)
-  ("\C-c}" . paredit-forward-barf-sexp)
-  ("\C-c(" . paredit-backward-slurp-sexp)
-  ("\C-c{" . paredit-backward-barf-sexp)
-  ("\C-cw" . paredit-copy-as-kill)))
-#+end_src
-
-**** Rainbow delimiters
-
-#+begin_src emacs-lisp
-(tierack/require-package 'rainbow-delimiters)
-(require 'rainbow-delimiters)
 #+end_src
 
 *** Clojure
 
 #+begin_src emacs-lisp
-(tierack/require-package 'clojure-mode)
-(tierack/require-package 'clojurescript-mode)
-(tierack/require-package 'cider)
-(tierack/require-package 'typed-clojure-mode)
-#+end_src
-
-Paredit and rainbows.
-
-#+begin_src emacs-lisp
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-#+end_src
-
-For Cider, too.
-
-#+begin_src emacs-lisp
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-#+end_src
-
-And eldoc.
-
-#+begin_src emacs-lisp
-(add-hook 'cider-mode-hook 'eldoc-mode)
-(add-hook 'cider-repl-mode-hook 'eldoc-mode)
+(use-package clojure-mode)
+(use-package clojurescript-mode)
 #+end_src
 
 **** CIDER
 
-Some configuration:
-
 #+begin_src emacs-lisp
-(setq cider-repl-prompt-function #'cider-repl-prompt-abbreviated)
-(setq cider-repl-use-pretty-printing nil)
+(use-package cider
+  :init
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook #'eldoc-mode)
+  (setq cider-repl-prompt-function #'cider-repl-prompt-abbreviated)
+  (setq cider-repl-use-pretty-printing nil)
+  :delight " cider"
+  :pin melpa-stable)
 #+end_src
 
 Start a REPL with the test profile.
@@ -670,73 +560,65 @@ Figwheel in a cljs REPL:
 **** clj-refactor
 
 #+begin_src emacs-lisp
-(tierack/require-package 'clj-refactor)
-
-(require 'clj-refactor)
-
-(defun tierack/clj-refactor-hook ()
-  (clj-refactor-mode 1)
-  (yas-minor-mode 1)
-  (cljr-add-keybindings-with-prefix "C-c c"))
-
-(add-hook 'clojure-mode-hook #'tierack/clj-refactor-hook)
-
-(eval-after-load 'clj-refactor
-  '(progn
-     (setq cljr-favor-private-functions nil)
-     (setq cljr-favor-prefix-notation nil)))
+(use-package clj-refactor
+  :init
+  (defun tierack/clj-refactor-hook ()
+    (clj-refactor-mode 1)
+    (yas-minor-mode 1)
+    (cljr-add-keybindings-with-prefix "C-c c"))
+  (add-hook 'clojure-mode-hook #'tierack/clj-refactor-hook)
+  (setq cljr-favor-private-functions nil)
+  (setq cljr-favor-prefix-notation nil)
+  :delight " λr")
 #+end_src
 
-*** Elisp
+*** For Lisps
+
+**** Paredit
 
 #+begin_src emacs-lisp
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(use-package paredit
+  :hook
+  ((clojure-mode
+    cider-repl-mode
+    emacs-lisp-mode
+    scheme-mode) . paredit-mode)
+  :bind (:map paredit-mode-map
+         ("C-c )" . paredit-forward-slurp-sexp)
+         ("C-c }" . paredit-forward-barf-sexp)
+         ("C-c (" . paredit-backward-slurp-sexp)
+         ("C-c {" . paredit-backward-barf-sexp)
+         ("C-c w" . paredit-copy-as-kill))
+  :delight " ()")
 #+end_src
 
-*** Scheme
-
-I'm using Guile.
+**** Rainbow delimiters
 
 #+begin_src emacs-lisp
-(add-hook 'scheme-mode-hook 'paredit-mode)
-(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
-
-(add-hook 'inferior-scheme-mode-hook 'paredit-mode)
-(add-hook 'inferior-scheme-mode-hook 'rainbow-delimiters-mode)
-#+end_src
-
-**** Geiser
-
-#+begin_src emacs-lisp
-(tierack/require-package 'geiser)
-#+end_src
-
-Set it up.
-
-#+begin_src emacs-lisp
-(setq geiser-active-implementations '(guile))
-
-(add-hook 'geiser-repl-mode-hook 'paredit-mode)
-(add-hook 'geiser-repl-mode-hook 'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :hook
+  ((clojure-mode
+    cider-repl-mode
+    emacs-lisp-mode
+    scheme-mode) . rainbow-delimiters-mode))
 #+end_src
 
 *** Rust
 
 #+begin_src emacs-lisp
-(tierack/require-package 'rust-mode)
-(tierack/require-package 'cargo)
-(tierack/require-package 'racer)
-(tierack/require-package 'toml-mode)
+(use-package rust-mode
+  :bind (:map rust-mode-map
+         ("[tab]" . company-indent-or-complete-common)))
 
-(add-hook 'rust-mode-hook #'cargo-minor-mode)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
 
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+(use-package racer
+  :init
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  :hook (rust-mode . racer-mode))
+
+(use-package toml-mode)
 #+end_src
 
 *** Ruby
@@ -748,53 +630,44 @@ Set it up.
 *** Javascript
 
 #+begin_src emacs-lisp
-(tierack/require-package 'nodejs-repl)
+(use-package nodejs-repl)
 #+end_src
 
 *** Less
 
 #+begin_src emacs-lisp
-(tierack/require-package 'less-css-mode)
+(use-package less-css-mode)
 #+end_src
 
 *** Go
 
 #+begin_src emacs-lisp
-(tierack/require-package 'go-mode)
+(use-package go-mode)
 #+end_src
 
 *** Docker
 
 #+begin_src emacs-lisp
-(tierack/require-package 'dockerfile-mode)
+(use-package dockerfile-mode)
 #+end_src
 
 *** Markdown
 
 #+begin_src emacs-lisp
-(tierack/require-package 'markdown-mode)
-#+end_src
-
-A custom CSS for Markdown HTML output
-
-#+begin_src emacs-lisp
-(eval-after-load 'markdown-mode
-  '(progn
-     (add-to-list 'markdown-css-paths (expand-file-name "~/.emacs.d/markdown.css"))
-     (setq markdown-content-type "text/html")
-     (setq markdown-coding-system 'utf-8)))
-#+end_src
-
-Add auto-fill-mode.
-
-#+begin_src emacs-lisp
-(add-hook 'markdown-mode-hook 'auto-fill-mode)
+(use-package markdown-mode
+  :init
+  (setq markdown-content-type "text/html")
+  (setq markdown-coding-system 'utf-8)
+  (add-hook 'markdown-mode-hook 'auto-fill-mode)
+  :config
+  (add-to-list 'markdown-css-paths
+               (expand-file-name "~/.emacs.d/markdown.css")))
 #+end_src
 
 *** YAML
 
 #+begin_src emacs-lisp
-(tierack/require-package 'yaml-mode)
+(use-package yaml-mode)
 #+end_src
 
 *** Compilation
@@ -847,26 +720,15 @@ answer]].)
 
 *** Mode line
 
-Use dim to clean up mode list.
+Clean up mode list.
 
 #+begin_src emacs-lisp
-(tierack/require-package 'dim)
+(use-package autorevert
+  :delight auto-revert-mode)
 
-(require 'dim)
-
-(dim-major-names
- '((clojure-mode "clj")
-   (js-mode "js")
-   (lisp-interaction-mode "λ-eval")))
-
-(dim-minor-names
- '((auto-revert-mode "")
-   (cider-mode " cider")
-   (clj-refactor-mode " λr")
-   (company-mode "")
-   (compilation-in-progress " *c*")
-   (eldoc-mode "")
-   (paredit-mode " ()")))
+(use-package emacs
+ :delight
+ (eldoc-mode))
 #+end_src
 
 ** erc

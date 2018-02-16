@@ -72,15 +72,6 @@ Fix the prompt for Postgres (at least). Taken from [[https://www.emacswiki.org/e
           #'tierack/set-psql-prompt-regexps)
 #+end_src
 
-Let's try sqlup.
-
-#+begin_src emacs-lisp
-(tierack/require-package 'sqlup-mode)
-
-(add-hook 'sql-interactive-mode-hook 'sqlup-mode)
-(global-set-key "\C-csu" 'sqlup-capitalize-keywords-in-region)
-#+end_src
-
 ** PATH stuff
 
 This is where I am: build up the =exec-path= and, as the very last
