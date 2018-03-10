@@ -608,7 +608,7 @@ Figwheel in a cljs REPL:
 #+begin_src emacs-lisp
 (use-package rust-mode
   :bind (:map rust-mode-map
-         ("[tab]" . company-indent-or-complete-common)))
+         ([tab] . company-indent-or-complete-common)))
 
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode))
