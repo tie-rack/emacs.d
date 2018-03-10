@@ -151,6 +151,25 @@ filename searching, find-file-in-project is even moreso.
   :delight)
 #+end_src
 
+**** Highlight
+
+#+begin_src emacs-lisp
+(use-package highlight
+  :init
+  (defun tierack/highlight-and-unselect-region ()
+    (interactive)
+    (when (use-region-p)
+      (hlt-highlight-region)
+      (deactivate-mark)))
+  (defun tierack/unhighlight-and-unselect-region ()
+    (interactive)
+    (when (use-region-p)
+      (hlt-unhighlight-region)
+      (deactivate-mark)))
+  :bind (("C-c h h" . tierack/highlight-and-unselect-region)
+         ("C-c h u" . tierack/unhighlight-and-unselect-region)))
+#+end_src
+
 **** Quitting
 
 Sometimes I quit before I'm really done. Sometimes I just hit the
