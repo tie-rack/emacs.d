@@ -25,10 +25,10 @@ Get some paths in the path.
 
 *** Autosaves
 
-I shove autosaves in =/tmp= because I don't care about them enough.
+Autosaves live in =~/.emacs.d/auto-saves=.
 
 #+begin_src emacs-lisp
-(defvar autosave-dir "/tmp/emacs_autosaves/")
+(defvar autosave-dir "~/.emacs.d/auto-saves/")
 
 (make-directory autosave-dir t)
 
