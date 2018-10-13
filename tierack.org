@@ -364,6 +364,40 @@ Keybindings.
   ("\C-crb" . tierack/rename-shell-buffer-to-current-dir)))
 #+end_src
 
+*** Eshell
+
+Making shells and renaming them.
+
+#+begin_src emacs-lisp
+(defun tierack/eshell-buffer-name ()
+  (let ((dir-name (thread-first default-directory
+                    directory-file-name
+                    (split-string "/")
+                    last
+                    first)))
+    (format "*eshell: %s*" dir-name)))
+
+(defun tierack/rename-eshell-buffer ()
+  (interactive)
+  (rename-buffer (tierack/eshell-buffer-name) t))
+
+(defun tierack/eshell-here ()
+  (interactive)
+  (let* ((dir-name (thread-first default-directory
+                     directory-file-name
+                     (split-string "/")
+                     last
+                     first))
+         (buffer-name (format "*eshell: %s*" dir-name)))
+    (eshell)
+    (tierack/add-keybindings
+     eshell-mode-map
+     '(("\C-crb" . tierack/rename-eshell-buffer)))
+    (tierack/rename-eshell-buffer)))
+
+(global-set-key "\C-ceh" #'tierack/eshell-here)
+#+end_src
+
 *** Ibuffer-vc
 
 Configure =Ibuffer= to split buffers into groups based on version
