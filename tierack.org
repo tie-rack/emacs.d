@@ -45,8 +45,7 @@ Autosaves live in =~/.emacs.d/auto-saves=.
 
 *** Backups
 
-Backups, however, get to live in =~/.emacs.d/backups=. This is another
-opportunity for me to figure out what I really want.
+Backups live in =~/.emacs.d/backups=.
 
 #+begin_src emacs-lisp
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
@@ -208,7 +207,8 @@ keys. This really does help me.
 
 **** Before save hooks
 
-Make sure there's a final newline when saving, but also no other extraneous whitespace.
+Make sure there's a final newline when saving, but also no other
+extraneous whitespace.
 
 #+begin_src emacs-lisp
 (setq-default require-final-newline 't)
