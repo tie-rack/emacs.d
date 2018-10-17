@@ -622,7 +622,8 @@ Highlight code blocks and preserve their indentation.
   (add-hook 'clojure-mode-hook #'tierack/clj-refactor-hook)
   (setq cljr-favor-private-functions nil)
   (setq cljr-favor-prefix-notation nil)
-  :delight " λr")
+  :delight " λr"
+  :pin melpa-stable)
 #+end_src
 
 *** For Lisps
