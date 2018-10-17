@@ -595,13 +595,17 @@ Highlight code blocks and preserve their indentation.
            (require 'figwheel-sidecar.repl-api)
            (figwheel-sidecar.repl-api/start-figwheel!)
            (figwheel-sidecar.repl-api/cljs-repl))")
-  (defun tierack/cider-jack-in-test-profile ()
-    (interactive)
-    (let ((cider-lein-parameters (concat "with-profile +test "
-                                         cider-lein-parameters)))
-      (cider-jack-in)))
+  (defun tierack/cider-jack-in-with-profile (promptp)
+    (interactive "P")
+    (require 'cider)
+    (let* ((profile (if promptp
+                        (read-string "Profile (default \"test\"): " nil nil "test")
+                      "test"))
+           (cider-lein-parameters (concat "with-profile +" profile " "
+                                          cider-lein-parameters)))
+      (cider-jack-in nil)))
   :bind (:map clojure-mode-map
-              ("C-c j" . tierack/cider-jack-in-test-profile))
+              ("C-c j" . tierack/cider-jack-in-with-profile))
   :delight " cider"
   :pin melpa-stable)
 #+end_src
