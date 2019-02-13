@@ -559,6 +559,12 @@ Highlight code blocks and preserve their indentation.
 (setq org-src-preserve-indentation t)
 #+end_src
 
+Use am/pm. Sorry!
+
+#+begin_src emacs-lisp
+(setq org-agenda-timegrid-use-ampm t)
+#+end_src
+
 ** Programming
 *** Magit
 
