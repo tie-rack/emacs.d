@@ -573,16 +573,18 @@ Use am/pm. Sorry!
 (setq org-agenda-timegrid-use-ampm t)
 #+end_src
 
-Track done.
+Track done and show in agenda.
 
 #+begin_src emacs-lisp
 (setq org-log-done 'time)
+(setq org-agenda-start-with-log-mode t)
 #+end_src
 
 Track habits.
 
 #+begin_src emacs-lisp
 (add-to-list #'org-modules 'org-habit)
+(require 'org-habit)
 #+end_src
 
 ** Programming
