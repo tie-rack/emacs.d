@@ -51,6 +51,14 @@ Backups live in =~/.emacs.d/backups=.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 #+end_src
 
+*** Secrets
+
+Load secrets!
+
+#+begin_src emacs-lisp
+(load-library "~/.emacs.d/secrets.el.gpg")
+#+end_src
+
 *** Packages
 
 #+begin_src emacs-lisp
