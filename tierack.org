@@ -485,7 +485,6 @@ Track habits.
 (use-package magit
   :config
   (setq magit-last-seen-setup-instructions "1.4.0")
-  (setq magit-branch-arguments (remove "--track" magit-branch-arguments))
   :bind (("C-c m s" . magit-status)))
 
 #+end_src
