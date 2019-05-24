@@ -475,6 +475,25 @@ Track habits.
 (require 'org-habit)
 #+end_src
 
+Lower default priority to C.
+
+#+begin_src emacs-lisp
+(setq org-default-priority 67)
+#+end_src
+
+Create an agenda view that shows explicitly prioritized TODOs, the
+current day, and then every todo.
+
+#+begin_src emacs-lisp
+(setq org-agenda-custom-commands
+      '(("n" "Prioritized, calendar, TODOs"
+         ((tags-todo "PRIORITY=\"A\"|PRIORITY=\"B\""
+                     ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                      (org-agenda-overriding-header "Prioritized unfinished tasks:")))
+          (agenda "" ((org-agenda-span 1)))
+          (alltodo "")))))
+#+end_src
+
 ** Programming
 *** Magit
 
