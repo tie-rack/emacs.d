@@ -61,6 +61,7 @@
  '(diff-removed ((t (:background "#FFFFFF" :foreground "#FF0000"))))
  '(diff-file-header ((t (:background "#BBBBDD" :foreground "#000000"))))
  '(diff-hunk-header ((t (:background "#DDDDFF" :foreground "#000000"))))
- '(clojure-keyword-face ((t (:foreground "#cb4fab")))))
+ '(clojure-keyword-face ((t (:foreground "#cb4fab"))))
+ '(org-scheduled-today ((t (:foreground "#FF0000" :weight bold)))))
 
 (provide-theme 'tierack-light)
