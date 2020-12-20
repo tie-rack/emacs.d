@@ -10,9 +10,15 @@ is mine.
 
 ## History
 
-When I upgraded to Emacs 24, I decided I'd start using ELPA and so it
-was a good time to start my .emacs.d all over.  So I ditched my old
-one and made this.
+When I upgraded to Emacs 24 in 2012 I decided I'd start using
+packages instead of copying and pasting from EmacsWiki, so I started a
+new configuration from scratch.
 
-Then I read and really enjoyed some org-mode literate configs, so I
-made another big change.
+Then I read and really enjoyed some org-mode literate configs, and
+tried that out in 2014.
+
+In a bout of cabin fever in 2020 I pared it way back and dropped the
+literate style.
+
+I imagine in 2024 I will burn it down again and see what grows from
+the ashes.
