@@ -143,6 +143,15 @@
 
 (use-package toml-mode)
 
+;; Python
+
+(use-package elpy
+  :ensure t
+  :defer t
+  :pin melpa-stable
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+
 ;; Docker
 
 (use-package dockerfile-mode)
@@ -179,7 +188,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(emacs use-package toml-mode rainbow-delimiters racer paredit nyan-mode magit ivy dockerfile-mode delight company cargo)))
+   '(elpy emacs use-package toml-mode rainbow-delimiters racer paredit nyan-mode magit ivy dockerfile-mode delight company cargo)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
