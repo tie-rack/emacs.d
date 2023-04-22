@@ -98,6 +98,12 @@
   (setq nyan-cat-face-number 4)
   (nyan-mode))
 
+;;; Emoji
+
+;; (use-package emojify
+;;   :pin melpa-stable
+;;   :hook (after-init . global-emojify-mode))
+
 ;;; Code
 
 (setq-default require-final-newline 't)
@@ -127,19 +133,22 @@
   :hook
   ((emacs-lisp-mode) . rainbow-delimiters-mode))
 
+(use-package clojure-mode
+  :pin melpa-stable)
+
 ;; Rust
 
 (use-package rust-mode
+  :init
+  (setq rust-format-on-save t)
+  :pin melpa-stable
+  :hook
+  (rust-mode . yas-minor-mode)
   :bind (:map rust-mode-map
-         ([tab] . company-indent-or-complete-common)))
+              ([tab] . company-indent-or-complete-common)))
 
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode))
-
-(use-package racer
-  :init
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  :hook (rust-mode . racer-mode))
 
 (use-package toml-mode)
 
@@ -151,6 +160,22 @@
   :pin melpa-stable
   :init
   (advice-add 'python-mode :before 'elpy-enable))
+
+;; Go
+
+(use-package go-mode
+  :pin melpa-stable)
+
+;; LSP
+
+(use-package lsp-mode
+  :pin melpa-stable
+  :hook
+  (go-mode . lsp-deferred)
+  (rust-mode . lsp-deferred)
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer")))
 
 ;; Docker
 
@@ -166,6 +191,11 @@
   :config
   (add-to-list 'markdown-css-paths
                (expand-file-name "~/.emacs.d/markdown.css")))
+
+;; Yaml
+
+(use-package yaml-mode
+  :pin melpa-stable)
 
 ;; Magit
 
@@ -188,7 +218,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(elpy emacs use-package toml-mode rainbow-delimiters racer paredit nyan-mode magit ivy dockerfile-mode delight company cargo)))
+   '(rust-mode yaml-mode clojure-mode lsp-mode go-mode emojify elpy emacs use-package toml-mode rainbow-delimiters paredit nyan-mode magit ivy dockerfile-mode delight company cargo)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
