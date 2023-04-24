@@ -116,6 +116,10 @@
 (setq-default js-indent-level 2)
 (setq-default css-indent-offset 2)
 
+;; JavaScript/TypeScript
+
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . javascript-mode))
+
 ;; Lisp
 
 (use-package paredit
