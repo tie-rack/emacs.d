@@ -41,7 +41,11 @@ pre:hover {
 }
 
 blockquote {
-    border-left: 2px solid #aaa;
-    margin-left: 0;
-    padding-left: 2rem;
+  border-left: 2px solid #aaa;
+  margin-left: 0;
+  padding-left: 2rem;
+}
+
+img[src*="#width-100"] {
+  width: 100%;
 }
