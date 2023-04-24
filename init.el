@@ -208,6 +208,11 @@
   (setq magit-last-seen-setup-instructions "1.4.0")
   :bind (("C-c m s" . magit-status)))
 
+;; Terraform
+
+(use-package terraform-mode
+  :pin melpa-stable)
+
 ;;; Local configs
 
 (if (file-exists-p "~/.emacslocal.el")
