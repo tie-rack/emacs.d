@@ -168,14 +168,18 @@
 ;; Go
 
 (use-package go-mode
-  :pin melpa-stable)
+  :defer t
+  :ensure t
+  :pin melpa-stable
+  :hook
+  (go-mode . lsp-deferred)
+  (go-mode . yas-minor-mode))
 
 ;; LSP
 
 (use-package lsp-mode
   :pin melpa-stable
   :hook
-  (go-mode . lsp-deferred)
   (rust-mode . lsp-deferred)
   :commands (lsp lsp-deferred)
   :init
