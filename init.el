@@ -139,6 +139,7 @@
 (use-package rust-mode
   :init
   (setq rust-format-on-save t)
+  (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
   :pin melpa-stable
   :hook
   (rust-mode . yas-minor-mode)
