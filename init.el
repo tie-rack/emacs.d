@@ -98,12 +98,6 @@
   (setq nyan-cat-face-number 4)
   (nyan-mode))
 
-;;; Emoji
-
-;; (use-package emojify
-;;   :pin melpa-stable
-;;   :hook (after-init . global-emojify-mode))
-
 ;;; Code
 
 (setq-default require-final-newline 't)
