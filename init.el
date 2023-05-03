@@ -183,7 +183,7 @@
   (rust-mode . lsp-deferred)
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer")))
+  (setq lsp-rust-analyzer-server-command '("rust-analyzer")))
 
 ;; Docker
 
