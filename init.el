@@ -30,6 +30,17 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
+;;; My global keybindings
+
+(setq cms/keybindings nil)
+
+(defun cms/add-keybinding (keys command)
+  "Given `keys` (will be passed to `kbd`) and a command, globally
+set that binding. This will also put it in `cms/keybindings`,
+which gets used to generate the `initial-scratch-message`."
+  (add-to-list 'cms/keybindings (list keys command))
+  (global-set-key (kbd keys) command))
+
 ;;; Packages
 
 (require 'package)
@@ -204,8 +215,9 @@
 
 (use-package magit
   :config
-  (setq magit-last-seen-setup-instructions "1.4.0")
-  :bind (("C-c m s" . magit-status)))
+  (setq magit-last-seen-setup-instructions "1.4.0"))
+
+(cms/add-keybinding "C-c m s" #'magit-status)
 
 ;; Terraform
 
@@ -215,7 +227,23 @@
 ;;; Local configs
 
 (if (file-exists-p "~/.emacslocal.el")
-  (load "~/.emacslocal.el"))
+    (load "~/.emacslocal.el"))
+
+;;; initial-scratch-message
+
+(defun cms/build-initial-scratch-message ()
+  (concat
+   (apply #'concat
+          (seq-map (lambda (binding)
+                     (concat ";; "
+                             (car binding)
+                             (format " [%s]" (cadr binding))
+                             "\n"))
+                   (seq-sort-by #'car #'string< cms/keybindings)))
+   "\n"))
+
+(setq initial-scratch-message
+      (cms/build-initial-scratch-message))
 
 ;;; Server
 
