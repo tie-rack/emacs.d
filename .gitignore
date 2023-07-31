@@ -1,8 +1,11 @@
+/.lsp-session-*
 /auto-save-list/
+/auto-saves/
 /backups/
 /elpa/
+/elpy/
 /eshell/
 /ido.last
-/transient/
+/projects
 /tramp
-/.lsp-session-*
+/transient/
