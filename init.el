@@ -44,17 +44,11 @@ which gets used to generate the `initial-scratch-message`."
 ;;; Packages
 
 (require 'package)
+(require 'use-package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
 
 (setq use-package-always-ensure t)
 
@@ -95,7 +89,7 @@ which gets used to generate the `initial-scratch-message`."
 ;; company
 
 (use-package company
-  :init
+  :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-tooltip-align-annotations t)
   :delight)
@@ -103,7 +97,7 @@ which gets used to generate the `initial-scratch-message`."
 ;; Nyan
 
 (use-package nyan-mode
-  :init
+  :config
   (setq nyan-wavy-trail nil)
   (setq nyan-bar-length 12)
   (setq nyan-cat-face-number 4)
@@ -148,7 +142,7 @@ which gets used to generate the `initial-scratch-message`."
 ;; Rust
 
 (use-package rust-mode
-  :init
+  :config
   (setq rust-format-on-save t)
   (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
   :pin melpa-stable
@@ -168,7 +162,7 @@ which gets used to generate the `initial-scratch-message`."
   :ensure t
   :defer t
   :pin melpa-stable
-  :init
+  :config
   (advice-add 'python-mode :before 'elpy-enable))
 
 ;; Go
@@ -188,7 +182,7 @@ which gets used to generate the `initial-scratch-message`."
   :hook
   (rust-mode . lsp-deferred)
   :commands (lsp lsp-deferred)
-  :init
+  :config
   (setq lsp-rust-analyzer-server-command '("rust-analyzer")))
 
 ;; Docker
@@ -198,7 +192,7 @@ which gets used to generate the `initial-scratch-message`."
 ;; Markdown
 
 (use-package markdown-mode
-  :init
+  :config
   (setq markdown-content-type "text/html")
   (setq markdown-coding-system 'utf-8)
   (add-hook 'markdown-mode-hook 'auto-fill-mode)
@@ -253,8 +247,7 @@ which gets used to generate the `initial-scratch-message`."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(rust-mode yaml-mode clojure-mode lsp-mode go-mode emojify elpy emacs use-package toml-mode rainbow-delimiters paredit nyan-mode magit ivy dockerfile-mode delight company cargo)))
+ '(org-agenda-files nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
