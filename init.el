@@ -218,6 +218,19 @@ which gets used to generate the `initial-scratch-message`."
 (use-package terraform-mode
   :pin melpa-stable)
 
+;;; Shell
+
+(defun cms/rename-shell-buffer ()
+  (interactive)
+  (let ((directory-basename (file-name-base
+                             (directory-file-name
+                              default-directory))))
+    (rename-buffer (concat "*" directory-basename "-shell*") t)))
+
+(add-hook 'shell-mode-hook #'cms/rename-shell-buffer)
+
+(cms/add-keybinding "C-c s r" #'cms/rename-shell-buffer)
+
 ;;; Local configs
 
 (if (file-exists-p "~/.emacslocal.el")
