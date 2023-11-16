@@ -103,6 +103,14 @@ which gets used to generate the `initial-scratch-message`."
   (setq nyan-cat-face-number 4)
   (nyan-mode))
 
+;;; rg
+
+(use-package rg
+  :defer t
+  :ensure t
+  :pin melpa-stable
+  :bind (("C-c r g" . rg)))
+
 ;;; Code
 
 (setq-default require-final-newline 't)
