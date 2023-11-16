@@ -248,10 +248,9 @@ which gets used to generate the `initial-scratch-message`."
   (concat
    (apply #'concat
           (seq-map (lambda (binding)
-                     (concat ";; "
+                     (format ";; %s [%s]\n"
                              (car binding)
-                             (format " [%s]" (cadr binding))
-                             "\n"))
+                             (cadr binding)))
                    (seq-sort-by #'car #'string< cms/keybindings)))
    "\n"))
 
