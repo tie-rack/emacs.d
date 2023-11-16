@@ -231,6 +231,12 @@ which gets used to generate the `initial-scratch-message`."
 
 (cms/add-keybinding "C-c s r" #'cms/rename-shell-buffer)
 
+;;; Extra keybindings
+
+(cms/add-keybinding "C-c b p" #'browse-url-at-point)
+(cms/add-keybinding "C-c b b" #'browse-url-of-buffer)
+(cms/add-keybinding "C-c f f" #'find-file-at-point)
+
 ;;; Local configs
 
 (if (file-exists-p "~/.emacslocal.el")
